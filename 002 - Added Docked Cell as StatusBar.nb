@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     34179,        699]
-NotebookOptionsPosition[      9978,        249]
-NotebookOutlinePosition[     33211,        682]
-CellTagsIndexPosition[     33143,        677]
+NotebookDataLength[     37399,        771]
+NotebookOptionsPosition[     12830,        317]
+NotebookOutlinePosition[     36151,        751]
+CellTagsIndexPosition[     36108,        748]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,9 +26,16 @@ Cell["Controls", "Title",
   3.9360395654341974`*^9}},ExpressionUUID->"6d2b477a-8724-420e-ad23-\
 6c0e6475d6ea"],
 
+Cell[CellGroupData[{
+
+Cell["Info", "Chapter",
+ CellChangeTimes->{{3.6631565141853085`*^9, 3.66315652513911*^9}, {
+  3.9360729491543837`*^9, 
+  3.936072949509616*^9}},ExpressionUUID->"ed419523-3833-4897-b166-\
+ca287fb9df72"],
+
 Cell["\<\
 $ImportFormats //Column;
-
 \[Bullet] Import[file, \[CloseCurlyDoubleQuote]nb\[CloseCurlyDoubleQuote]] \
 \[LongDash] imports and immediately launches lol
 \[Bullet] \[OpenCurlyDoubleQuote]text\[CloseCurlyDoubleQuote] \[LongDash] \
@@ -39,25 +46,19 @@ generates extra \[LeftGuillemet]new line\[RightGuillemet] symbols (I don\
 \[CloseCurlyQuote]t like it)\
 \>", "Text",
  CellChangeTimes->{{3.9360369268359776`*^9, 3.936036969664036*^9}, {
-  3.9360370280096164`*^9, 3.9360370556843443`*^9}, {3.9360394965541005`*^9, 
-  3.936039498012535*^9}},ExpressionUUID->"8664a79e-e804-4c97-ae71-\
-d750fd567f1a"],
+   3.9360370280096164`*^9, 3.9360370556843443`*^9}, {3.9360394965541005`*^9, 
+   3.936039498012535*^9}, 
+   3.9360713055798464`*^9},ExpressionUUID->"8664a79e-e804-4c97-ae71-\
+d750fd567f1a"]
+}, Closed]],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"SetOptions", "[", 
-   RowBox[{
-    RowBox[{"EvaluationCell", "[", "]"}], ",", " ", 
-    RowBox[{"AutoIndent", " ", "\[Rule]", " ", "False"}], ",", " ", 
-    RowBox[{"AutoSpacing", " ", "\[Rule]", " ", "False"}], ",", " ", 
-    RowBox[{"Background", " ", "\[Rule]", " ", "LightBlue"}]}], "]"}], 
-  ";"}]], "Input",
- AutoIndent->False,
- CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, 
-   3.936039505742253*^9, 3.936039551514239*^9},
- AutoSpacing->False,
- Background->RGBColor[0.87, 0.94, 1],
- CellLabel->"In[26]:=",ExpressionUUID->"a3add189-2c87-4545-bd60-3c14cff89f78"],
+Cell[CellGroupData[{
+
+Cell["PreInitialize", "Chapter",
+ CellChangeTimes->{{3.6631565141853085`*^9, 3.66315652513911*^9}, {
+  3.9360729537783837`*^9, 
+  3.936072956075529*^9}},ExpressionUUID->"9c6570f9-160a-4aa0-a75e-\
+08fc85bd0e6e"],
 
 Cell[BoxData[{
  RowBox[{
@@ -66,186 +67,253 @@ Cell[BoxData[{
     RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
     "\"\<WMVimLink_tmp.txt\>\""}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"Export", "[", 
-   RowBox[{"file", ",", " ", "\"\<\>\""}], "]"}], ";", " ", 
+  RowBox[{"WMLinkTagForCells", " ", "=", " ", "\"\<VimIO\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Export", "[", 
+    RowBox[{"file", ",", " ", "\"\<\>\""}], "]"}], ";"}], " ", 
   RowBox[{"(*", " ", 
-   RowBox[{"clear", " ", "prev", " ", "tmp", " ", "file"}], " ", "*)"}], "\n", 
+   RowBox[{"clear", " ", "prev", " ", "tmp", " ", "file"}], " ", 
+   "*)"}]}], "\n", 
+ RowBox[{"SetOptions", "[", 
+  RowBox[{
+   RowBox[{"InputNotebook", "[", "]"}], ",", " ", 
+   RowBox[{"DockedCells", " ", "\[Rule]", " ", 
+    RowBox[{"{", "}"}]}]}], "]"}], "\n", 
+ RowBox[{
   RowBox[{"lastChangedTime", " ", "=", " ", 
    RowBox[{"FileDate", "[", "file", "]"}]}], ";"}]}], "Input",
- AutoIndent->False,
  CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
-   3.936034519909929*^9, 3.9360345569903727`*^9}, {3.9360346129531507`*^9, 
-   3.936034780892109*^9}, {3.9360349112022915`*^9, 3.936035037181306*^9}, 
-   3.936035198403613*^9, 3.936035232273954*^9, {3.9360355326947002`*^9, 
-   3.9360355463342066`*^9}, {3.936035617333312*^9, 3.936035621116065*^9}, {
-   3.9360362150940437`*^9, 3.9360362186211576`*^9}, {3.936037520602837*^9, 
-   3.9360376419245048`*^9}, {3.936037687071768*^9, 3.9360376890531096`*^9}, {
-   3.936037743862237*^9, 3.936037780284924*^9}, {3.93603785316609*^9, 
-   3.9360378853533306`*^9}, {3.9360395069904003`*^9, 
-   3.9360395544364147`*^9}, {3.9360661512800045`*^9, 
-   3.9360661513858976`*^9}, {3.9360666373842263`*^9, 3.9360666376716204`*^9}, 
-   3.9360695456811953`*^9},
- AutoSpacing->False,
- Background->RGBColor[0.87, 0.94, 1],
- CellLabel->"In[27]:=",ExpressionUUID->"878336eb-89fc-479a-8449-e8162b075316"],
+  3.9360705449568577`*^9, 3.936070686957919*^9}, {3.936070729284511*^9, 
+  3.9360707958366137`*^9}, {3.936070830956317*^9, 3.9360708324297886`*^9}, {
+  3.936070972952054*^9, 3.9360709736628637`*^9}, {3.9360711896185627`*^9, 
+  3.936071208475854*^9}, {3.9360712837853665`*^9, 3.936071444892853*^9}, {
+  3.9360715097649035`*^9, 3.936071608780455*^9}, {3.936071655970441*^9, 
+  3.9360718276864834`*^9}, {3.936071878415244*^9, 3.9360719317706976`*^9}, {
+  3.9360720268565445`*^9, 3.936072102383154*^9}, {3.9360722807468095`*^9, 
+  3.9360723378956423`*^9}, {3.936072616723318*^9, 3.936072665466459*^9}, {
+  3.9360729437304296`*^9, 3.9360729439685016`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"5ca13fc8-79dd-48bd-bffc-1aa22be2a129"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Funcs defs", "Chapter",
+ CellChangeTimes->{{3.6631565141853085`*^9, 3.66315652513911*^9}, {
+  3.936072959309868*^9, 
+  3.936072961670929*^9}},ExpressionUUID->"313d546b-4a13-4f8c-8ce0-\
+0fd832e9ba91"],
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"importToCell", "[", "]"}], " ", ":=", " ", 
-  RowBox[{"Module", "[", 
-   RowBox[{
-    RowBox[{"{", "}"}], ",", "\n", "\t", 
+  RowBox[{
+   RowBox[{"delevePrevCells", "[", "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
     RowBox[{
-     RowBox[{"NotebookLocate", "[", "\"\<VimIO\>\"", "]"}], ";", " ", 
-     RowBox[{"(*", " ", 
-      RowBox[{"select", " ", "prev", " ", "imported", " ", "cells"}], " ", 
-      "*)"}], "\n", "\t", 
-     RowBox[{"NotebookDelete", "[", 
-      RowBox[{"SelectedNotebook", "[", "]"}], "]"}], ";", " ", 
-     RowBox[{"(*", " ", 
-      RowBox[{"and", " ", "delete", " ", "them"}], " ", "*)"}], "\n", "\n", 
-     "\t", 
-     RowBox[{"SelectionMove", "[", 
-      RowBox[{
-       RowBox[{"InputNotebook", "[", "]"}], ",", " ", "After", ",", " ", 
-       "Notebook"}], "]"}], ";", " ", 
-     RowBox[{"(*", " ", 
-      RowBox[{"go", " ", "to", " ", "EOF"}], " ", "*)"}], "\n", "\n", "\t", 
-     RowBox[{"NotebookWrite", "[", 
-      RowBox[{
-       RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", 
-       RowBox[{"Cell", "[", 
+     RowBox[{"{", "}"}], ",", "\n", "\t", 
+     RowBox[{
+      RowBox[{"NotebookLocate", "[", "WMLinkTagForCells", "]"}], ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"select", " ", "prev", " ", "imported", " ", "cells"}], " ", 
+       "*)"}], "\n", "\t", 
+      RowBox[{"NotebookDelete", "[", 
+       RowBox[{"SelectedNotebook", "[", "]"}], "]"}], ";"}]}], " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"and", " ", "delete", " ", "them"}], " ", "*)"}], "\n", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
+   3.936072677051457*^9, 3.9360726941160965`*^9}, 3.936072789303768*^9},
+ CellLabel->"In[6]:=",ExpressionUUID->"fc83a077-95e5-4f89-8cdc-3960e87a9064"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"importToCell", "[", "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\n", "\t", 
+     RowBox[{
+      RowBox[{"delevePrevCells", "[", "]"}], ";", "\n", "\t", 
+      RowBox[{"SelectionMove", "[", 
+       RowBox[{
+        RowBox[{"InputNotebook", "[", "]"}], ",", " ", "After", ",", " ", 
+        "Notebook"}], "]"}], ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"go", " ", "to", " ", "EOF"}], " ", "*)"}], "\n", "\t", 
+      RowBox[{"NotebookWrite", "[", 
+       RowBox[{
+        RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", 
+        RowBox[{"Cell", "[", 
+         RowBox[{
+          RowBox[{"Import", "[", 
+           RowBox[{"file", ",", " ", "\"\<text\>\""}], "]"}], ",", " ", 
+          "\"\<Input\>\"", ",", " ", 
+          RowBox[{"CellTags", " ", "\[Rule]", " ", "WMLinkTagForCells"}]}], 
+         "]"}], ",", " ", 
+        RowBox[{"(*", "select", "*)"}], " ", "All"}], "]"}], ";", "\n", "\t", 
+      RowBox[{"SetOptions", "[", "\n", "\t\t", 
+       RowBox[{
         RowBox[{
-         RowBox[{"Import", "[", 
-          RowBox[{"file", ",", " ", "\"\<text\>\""}], "]"}], ",", " ", 
-         "\"\<Input\>\"", ",", " ", 
-         RowBox[{"CellTags", " ", "\[Rule]", " ", "\"\<VimIO\>\""}]}], "]"}], 
-       ",", " ", 
-       RowBox[{"(*", "select", "*)"}], " ", "All"}], "]"}], ";", "\n", "\t", 
-     RowBox[{"SetOptions", "[", 
-      RowBox[{
+         RowBox[{"SelectedCells", "[", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", "\n", "\t\t", 
+        RowBox[{"CellDingbat", " ", "\[Rule]", " ", 
+         RowBox[{"Cell", "[", 
+          RowBox[{
+           RowBox[{"BoxData", "[", 
+            RowBox[{"StyleBox", "[", 
+             RowBox[{"\"\<\:2bb8 \>\"", ",", " ", 
+              RowBox[{"FontColor", " ", "->", " ", 
+               RowBox[{"GrayLevel", "[", "0.1", "]"}]}]}], "]"}], "]"}], ",", 
+           " ", 
+           RowBox[{"Background", " ", "->", " ", 
+            RowBox[{"{", "}"}]}], ",", " ", 
+           RowBox[{"FontSize", " ", "->", " ", "15"}]}], "]"}]}]}], "\n", 
+       "\t\t", "]"}], ";", "\n", "\t", 
+      RowBox[{"FrontEndExecute", "@", 
+       RowBox[{"FrontEndToken", "[", 
+        RowBox[{
+         RowBox[{"SelectedNotebook", "[", "]"}], ",", " ", "\"\<Style\>\"", 
+         ",", " ", "\"\<Input\>\""}], "]"}]}], ";", " ", 
+      RowBox[{"(*", " ", 
        RowBox[{
-        RowBox[{"SelectedCells", "[", "]"}], "[", 
-        RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
-       RowBox[{"ShowCellTags", "\[Rule]", "True"}]}], "]"}], ";", "\n", "\t", 
-     RowBox[{"FrontEndExecute", "@", 
-      RowBox[{"FrontEndToken", "[", 
-       RowBox[{
-        RowBox[{"SelectedNotebook", "[", "]"}], ",", " ", "\"\<Style\>\"", 
-        ",", " ", "\"\<Input\>\""}], "]"}]}], ";", " ", 
-     RowBox[{"(*", " ", 
-      RowBox[{
-       RowBox[{"Press", " ", "Alt"}], "+", 
-       RowBox[{"8", " ", "for", " ", "formatting", " ", "to", " ", "go"}]}], 
-      " ", "*)"}], "\n", "\t", 
-     RowBox[{"FrontEndExecute", "@", 
-      RowBox[{"FrontEndToken", "[", 
-       RowBox[{
-        RowBox[{"SelectedNotebook", "[", "]"}], ",", " ", 
-        "\"\<Evaluate\>\""}], "]"}]}], ";"}]}], "\n", "\t", "]"}]}]], "Input",
+        RowBox[{"Press", " ", "Alt"}], "+", 
+        RowBox[{"8", " ", "for", " ", "formatting", " ", "to", " ", "go"}]}], 
+       " ", "*)"}], "\n", "\t", 
+      RowBox[{"FrontEndExecute", "@", 
+       RowBox[{"FrontEndToken", "[", 
+        RowBox[{
+         RowBox[{"SelectedNotebook", "[", "]"}], ",", " ", 
+         "\"\<Evaluate\>\""}], "]"}]}], ";"}]}], "\n", "\t", "]"}]}], 
+  ";"}]], "Input",
  CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, 
-   3.936039552396455*^9, {3.9360399110847225`*^9, 3.936039957487999*^9}, {
-   3.936040094034891*^9, 3.9360400954371233`*^9}, {3.936040444954297*^9, 
-   3.9360404465242634`*^9}, {3.936067169824154*^9, 3.9360671703029795`*^9}, {
-   3.936069549747589*^9, 
-   3.9360695503743696`*^9}},ExpressionUUID->"3c4381f1-8577-4e8c-8c5e-\
-cbc092632fef"],
+   3.9360727348017387`*^9},
+ CellLabel->"In[7]:=",ExpressionUUID->"6a5b2642-1342-4762-a2b0-57b6dc472d89"]
+}, Closed]],
 
 Cell[CellGroupData[{
+
+Cell["Initialize", "Chapter",
+ CellChangeTimes->{{3.6631565141853085`*^9, 3.66315652513911*^9}, {
+  3.936072964985449*^9, 
+  3.936072966069536*^9}},ExpressionUUID->"6a101c8a-3ca8-4304-a03e-\
+e2b03337a84a"],
+
+Cell[BoxData[
+ RowBox[{"delevePrevCells", "[", "]"}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"b1bb9916-d882-4be5-8c0e-518c93f1d01e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"updateTracker", " ", "=", " ", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Refresh", "[", 
+     RowBox[{
+      RowBox[{"(", "\n", "\t", 
+       RowBox[{
+        RowBox[{"If", "[", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"FileDate", "[", "file", "]"}], " ", ">", " ", 
+           "lastChangedTime"}], ",", "\n", "\t\t", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"importToCell", "[", "]"}], ",", " ", 
+            RowBox[{"lastChangedTime", " ", "=", " ", 
+             RowBox[{"FileDate", "[", "file", "]"}]}]}], "}"}], ",", "\n", 
+          "\t\t", "Null"}], " ", "]"}], ";", "\t", "\n", "\t", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", "\n", "\t\t", 
+          RowBox[{"\"\<Listener is Active  \>\"", ",", "\n", "\t\t", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Framed", "[", 
+              RowBox[{"#", ",", " ", 
+               RowBox[{"Background", " ", "\[Rule]", " ", "LightGreen"}], ",",
+                " ", 
+               RowBox[{"RoundingRadius", " ", "\[Rule]", " ", "10"}]}], "]"}],
+              "&"}], "@", 
+            RowBox[{"Row", "[", 
+             RowBox[{"{", 
+              RowBox[{"\"\<Last Read: \>\"", ",", " ", 
+               RowBox[{"DateString", "[", 
+                RowBox[{"FileDate", "[", "file", "]"}], "]"}]}], "}"}], 
+             "]"}]}]}], "\n", "\t\t", "}"}], "]"}]}], "\n", "\t", ")"}], ",", 
+      "\n", 
+      RowBox[{"UpdateInterval", " ", "\[Rule]", " ", "3"}]}], "]"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
+  3.9360705449568577`*^9, 3.936070686957919*^9}, {3.936070729284511*^9, 
+  3.9360707958366137`*^9}, {3.936070830956317*^9, 3.9360708324297886`*^9}, {
+  3.936070972952054*^9, 3.9360709736628637`*^9}, {3.9360711896185627`*^9, 
+  3.936071208475854*^9}, {3.9360712837853665`*^9, 3.936071444892853*^9}, {
+  3.9360715097649035`*^9, 3.936071608780455*^9}, {3.936071655970441*^9, 
+  3.9360718276864834`*^9}, {3.936071878415244*^9, 3.9360719317706976`*^9}, {
+  3.9360720268565445`*^9, 3.936072102383154*^9}, {3.9360722807468095`*^9, 
+  3.9360723378956423`*^9}, {3.936072616723318*^9, 3.936072747847246*^9}, {
+  3.9360730741335163`*^9, 3.936073137266699*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"0b82138c-e676-4581-b2f4-1e05ec1acebe"],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Dynamic", "[", 
-   RowBox[{"Refresh", "[", 
-    RowBox[{
-     RowBox[{"{", "\n", "\t", 
-      RowBox[{
-       RowBox[{"If", "[", " ", 
-        RowBox[{
-         RowBox[{
-          RowBox[{"FileDate", "[", "file", "]"}], " ", ">", " ", 
-          "lastChangedTime"}], ",", "\n", "\t\t", 
-         RowBox[{"{", 
+  RowBox[{
+   RowBox[{"dockedStatusCell", " ", "=", " ", 
+    RowBox[{"Cell", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"BoxData", "[", 
+       RowBox[{"ToBoxes", "[", 
+        RowBox[{"Dynamic", "[", 
+         RowBox[{"If", "[", "\n", "\t\t", 
           RowBox[{
-           RowBox[{"importToCell", "[", "]"}], ",", " ", 
-           RowBox[{"lastChangedTime", " ", "=", " ", 
-            RowBox[{"FileDate", "[", "file", "]"}]}]}], "}"}], ",", "\n", 
-         "\t\t", "Null"}], " ", "]"}], ",", "\n", "\t", "\n", "\t", 
-       RowBox[{"FileDate", "[", "file", "]"}]}], "\n", "\t", "}"}], ",", "\n", 
-     RowBox[{"UpdateInterval", "\[Rule]", "3"}]}], "]"}], "]"}], "\n"}], "\n", 
+           RowBox[{"StringQ", "[", "file", "]"}], ",", " ", 
+           RowBox[{"(*", " ", 
+            RowBox[{
+            "this", " ", "checks", " ", "if", " ", "NB", " ", "was", " ", 
+             "evaluated"}], " ", "*)"}], "\n", "\t\t", "updateTracker", ",", 
+           "\n", "\t\t", "\"\<Evaluate Notebook to Launch Listener\>\""}], 
+          "]"}], "]"}], "]"}], "]"}], ",", "\[IndentingNewLine]", 
+      "\"\<DockedCell\>\"", ",", " ", "\n", "\t", 
+      RowBox[{"CellFrame", " ", "\[Rule]", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "0"}], "}"}]}], "}"}]}], ",", "\n", "\t", 
+      RowBox[{"CellFrameMargins", " ", "\[Rule]", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"8", ",", "8"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "3"}], "}"}]}], "}"}]}], ",", "\n", "\t", 
+      RowBox[{"CellFrameColor", " ", "\[Rule]", " ", 
+       RowBox[{"Darker", "@", "Gray"}]}]}], "\n", "\t", "]"}]}], ";"}], 
+  "\n"}], "\n", 
  RowBox[{
-  RowBox[{"(*", " ", 
+  RowBox[{"SetOptions", "[", 
    RowBox[{
-   "should", " ", "it", " ", "be", " ", "made", " ", "to", " ", "docked", " ",
-     "cells", " ", "for", " ", "Dynamics", " ", "to", " ", "be", " ", 
-    "always", " ", 
-    RowBox[{"visible", "?"}]}], " ", "*)"}]}]}], "Input",
+    RowBox[{"InputNotebook", "[", "]"}], ",", " ", 
+    RowBox[{"DockedCells", " ", "\[Rule]", " ", "dockedStatusCell"}]}], "]"}],
+   ";"}]}], "Input",
  CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
-  3.936040019594578*^9, 3.93604002792704*^9}, {3.936040108105692*^9, 
-  3.9360401738270435`*^9}, {3.9360402088828335`*^9, 3.9360402360911193`*^9}, {
-  3.936040277644062*^9, 3.93604036478409*^9}, {3.9360403982769065`*^9, 
-  3.936040398747773*^9}, {3.9360407009134007`*^9, 3.936040718096692*^9}},
- CellLabel->"In[31]:=",ExpressionUUID->"548fed23-5791-4d2f-a491-fbfe27dbafd0"],
-
-Cell[BoxData[
- DynamicBox[ToBoxes[
-   Refresh[{
-     If[FileDate[$CellContext`file] > $CellContext`lastChangedTime, {
-       $CellContext`importToCell[], $CellContext`lastChangedTime = 
-       FileDate[$CellContext`file]}, Null], 
-     FileDate[$CellContext`file]}, UpdateInterval -> 3], StandardForm],
-  ImageSizeCache->{186., {6.6, 13.6}}]], "Output",
- CellChangeTimes->{
-  3.9360403725639734`*^9, 3.936040412593732*^9, {3.9360407219404984`*^9, 
-   3.936040728432726*^9}, {3.9360408339981847`*^9, 3.936040856891311*^9}, 
-   3.9360650975874014`*^9, 3.936066153445978*^9, 3.936066646254898*^9, 
-   3.936069547854512*^9},
- CellLabel->"Out[31]=",ExpressionUUID->"f8755328-e2a7-4c2a-b22f-86cceb6c8b10"]
+  3.9360705449568577`*^9, 3.936070686957919*^9}, {3.936070729284511*^9, 
+  3.9360707958366137`*^9}, {3.936070830956317*^9, 3.9360708324297886`*^9}, {
+  3.936070972952054*^9, 3.9360709736628637`*^9}, {3.9360711896185627`*^9, 
+  3.936071208475854*^9}, {3.9360712837853665`*^9, 3.936071444892853*^9}, {
+  3.9360715097649035`*^9, 3.936071608780455*^9}, {3.936071655970441*^9, 
+  3.9360718276864834`*^9}, {3.936071878415244*^9, 3.9360719317706976`*^9}, {
+  3.9360720268565445`*^9, 3.936072102383154*^9}, {3.9360722807468095`*^9, 
+  3.9360723378956423`*^9}, {3.936072616723318*^9, 3.936072747847246*^9}, {
+  3.936072801282033*^9, 3.936072802954326*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"a36dd188-a3c1-4731-b98f-f7869f500dce"]
 }, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
+}, Closed]],
 
 Cell["IO", "Title",
  CellChangeTimes->{{3.663156514169795*^9, 3.66315652513911*^9}, {
   3.9360389282254133`*^9, 
   3.936038928314213*^9}},ExpressionUUID->"829c3b04-e96f-472b-add6-\
-f0ebfd349ad6"],
-
-Cell[CellGroupData[{
-
-Cell["\<\
-Notebook[{Cell[\"\", \"Input\"]}, FrontEndVersion -> \"12.2 for Microsoft \
-Windows (64-bit) (December 12, 2020)\", 
-  StyleDefinitions -> \"WM_Pups_Stylesheet_ACTIVE.nb\"]\
-\>", "Input",
- ShowCellTags->True,
- CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
-  3.9360666315689816`*^9, 3.9360666315699744`*^9}, {3.9360670112773376`*^9, 
-  3.936067017289531*^9}},
- TagBoxOptions->{TagBoxNote->"Pups"},
- CellTags->"VimIO",
- CellLabel->"In[32]:=",ExpressionUUID->"17747f62-8780-40f9-8025-aeec01eb775f"],
-
-Cell[BoxData[
- RowBox[{"Notebook", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"Cell", "[", 
-     RowBox[{"\<\"\"\>", ",", "\<\"Input\"\>"}], "]"}], "}"}], ",", 
-   RowBox[{
-   "FrontEndVersion", 
-    "\[Rule]", "\<\"12.2 for Microsoft Windows (64-bit) (December 12, 2020)\"\
-\>"}], ",", 
-   RowBox[{
-   "StyleDefinitions", "\[Rule]", "\<\"WM_Pups_Stylesheet_ACTIVE.nb\"\>"}]}], 
-  "]"}]], "Output",
- CellChangeTimes->{{3.9360666316022196`*^9, 3.936066646280316*^9}, 
-   3.936069547864695*^9},
- CellTags->"VimIO",
- CellLabel->"Out[32]=",ExpressionUUID->"0e0c8611-ff1e-4a61-a46d-d895628f892b"]
-}, Open  ]]
-}, Open  ]]
+f0ebfd349ad6"]
 },
 BlinkingCellInsertionPoint->False,
 CellInsertionPointColor->RGBColor[0., 0.5, 0.96],
@@ -262,8 +330,17 @@ CellInsertionPointCell->Cell[
   CellMargins -> 0, Editable -> False, Selectable -> False],
 NotebookEventActions->{},
 WindowSize->{742.8, 820.1999999999999},
-WindowMargins->{{Automatic, -383.39999999999986`}, {649.2, Automatic}},
-DockedCells->{},
+WindowMargins->{{Automatic, -382.20000000000005`}, {649.2, Automatic}},
+DockedCells->Cell[
+  BoxData[
+   DynamicBox[
+    ToBoxes[
+     If[
+      StringQ[$CellContext`file], $CellContext`updateTracker, 
+      "Evaluate Notebook to Launch Listener"], StandardForm]]], "DockedCell", 
+  CellFrame -> {{0, 0}, {2, 0}}, CellFrameMargins -> {{8, 8}, {1, 3}}, 
+  CellFrameColor -> 
+  RGBColor[0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`]],
 Magnification:>0.8 Inherited,
 FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
 StyleDefinitions->Notebook[{
@@ -666,41 +743,36 @@ ExpressionUUID->"aa2b8bdf-428f-4e0a-a0b5-e9437cfb3946"
 
 (* Internal cache information *)
 (*CellTagsOutline
-CellTagsIndex->{
- "VimIO"->{
-  Cell[8824, 216, 529, 11, 51, "Input",ExpressionUUID->"17747f62-8780-40f9-8025-aeec01eb775f",
-   CellTags->"VimIO"],
-  Cell[9356, 229, 594, 16, 42, "Output",ExpressionUUID->"0e0c8611-ff1e-4a61-a46d-d895628f892b",
-   CellTags->"VimIO"]}
- }
+CellTagsIndex->{}
 *)
 (*CellTagsIndex
-CellTagsIndex->{
- {"VimIO", 32882, 669}
- }
+CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 203, 4, 28, "Title",ExpressionUUID->"6d2b477a-8724-420e-ad23-6c0e6475d6ea"],
-Cell[786, 28, 810, 15, 90, "Text",ExpressionUUID->"8664a79e-e804-4c97-ae71-d750fd567f1a"],
-Cell[1599, 45, 624, 14, 27, "Input",ExpressionUUID->"a3add189-2c87-4545-bd60-3c14cff89f78"],
-Cell[2226, 61, 1476, 28, 58, "Input",ExpressionUUID->"878336eb-89fc-479a-8449-e8162b075316"],
-Cell[3705, 91, 2626, 60, 181, "Input",ExpressionUUID->"3c4381f1-8577-4e8c-8c5e-cbc092632fef"],
 Cell[CellGroupData[{
-Cell[6356, 155, 1497, 32, 163, "Input",ExpressionUUID->"548fed23-5791-4d2f-a491-fbfe27dbafd0"],
-Cell[7856, 189, 699, 13, 36, "Output",ExpressionUUID->"f8755328-e2a7-4c2a-b22f-86cceb6c8b10"]
-}, Open  ]]
-}, Open  ]],
+Cell[808, 30, 201, 4, 25, "Chapter",ExpressionUUID->"ed419523-3833-4897-b166-ca287fb9df72"],
+Cell[1012, 36, 839, 15, 75, "Text",ExpressionUUID->"8664a79e-e804-4c97-ae71-d750fd567f1a"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[8604, 208, 195, 4, 28, "Title",ExpressionUUID->"829c3b04-e96f-472b-add6-f0ebfd349ad6"],
+Cell[1888, 56, 210, 4, 25, "Chapter",ExpressionUUID->"9c6570f9-160a-4aa0-a75e-08fc85bd0e6e"],
+Cell[2101, 62, 1609, 33, 88, "Input",ExpressionUUID->"5ca13fc8-79dd-48bd-bffc-1aa22be2a129"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[8824, 216, 529, 11, 51, "Input",ExpressionUUID->"17747f62-8780-40f9-8025-aeec01eb775f",
- CellTags->"VimIO"],
-Cell[9356, 229, 594, 16, 42, "Output",ExpressionUUID->"0e0c8611-ff1e-4a61-a46d-d895628f892b",
- CellTags->"VimIO"]
+Cell[3747, 100, 205, 4, 25, "Chapter",ExpressionUUID->"313d546b-4a13-4f8c-8ce0-0fd832e9ba91"],
+Cell[3955, 106, 848, 19, 73, "Input",ExpressionUUID->"fc83a077-95e5-4f89-8cdc-3960e87a9064"],
+Cell[4806, 127, 2634, 62, 209, "Input",ExpressionUUID->"6a5b2642-1342-4762-a2b0-57b6dc472d89"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[7477, 194, 205, 4, 25, "Chapter",ExpressionUUID->"6a101c8a-3ca8-4304-a03e-e2b03337a84a"],
+Cell[7685, 200, 141, 2, 27, "Input",ExpressionUUID->"b1bb9916-d882-4be5-8c0e-518c93f1d01e"],
+Cell[7829, 204, 2352, 49, 177, "Input",ExpressionUUID->"0b82138c-e676-4581-b2f4-1e05ec1acebe"],
+Cell[10184, 255, 2420, 52, 193, "Input",ExpressionUUID->"a36dd188-a3c1-4731-b98f-f7869f500dce"]
 }, Open  ]]
-}, Open  ]]
+}, Closed]],
+Cell[12631, 311, 195, 4, 28, "Title",ExpressionUUID->"829c3b04-e96f-472b-add6-f0ebfd349ad6"]
 }
 ]
 *)
