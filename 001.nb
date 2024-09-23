@@ -1,0 +1,707 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     34179,        699]
+NotebookOptionsPosition[      9978,        249]
+NotebookOutlinePosition[     33211,        682]
+CellTagsIndexPosition[     33143,        677]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Controls", "Title",
+ CellChangeTimes->{{3.663156514169795*^9, 3.66315652513911*^9}, {
+  3.9360395646543612`*^9, 
+  3.9360395654341974`*^9}},ExpressionUUID->"6d2b477a-8724-420e-ad23-\
+6c0e6475d6ea"],
+
+Cell["\<\
+$ImportFormats //Column;
+
+\[Bullet] Import[file, \[CloseCurlyDoubleQuote]nb\[CloseCurlyDoubleQuote]] \
+\[LongDash] imports and immediately launches lol
+\[Bullet] \[OpenCurlyDoubleQuote]text\[CloseCurlyDoubleQuote] \[LongDash] \
+generates single String with \[LeftGuillemet]\\t\\s\[RightGuillemet] symbols
+\[Bullet] \[OpenCurlyDoubleQuote]string\[CloseCurlyDoubleQuote] \[LongDash] \
+same as \[OpenCurlyDoubleQuote]text\[CloseCurlyDoubleQuote], but also \
+generates extra \[LeftGuillemet]new line\[RightGuillemet] symbols (I don\
+\[CloseCurlyQuote]t like it)\
+\>", "Text",
+ CellChangeTimes->{{3.9360369268359776`*^9, 3.936036969664036*^9}, {
+  3.9360370280096164`*^9, 3.9360370556843443`*^9}, {3.9360394965541005`*^9, 
+  3.936039498012535*^9}},ExpressionUUID->"8664a79e-e804-4c97-ae71-\
+d750fd567f1a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{
+    RowBox[{"EvaluationCell", "[", "]"}], ",", " ", 
+    RowBox[{"AutoIndent", " ", "\[Rule]", " ", "False"}], ",", " ", 
+    RowBox[{"AutoSpacing", " ", "\[Rule]", " ", "False"}], ",", " ", 
+    RowBox[{"Background", " ", "\[Rule]", " ", "LightBlue"}]}], "]"}], 
+  ";"}]], "Input",
+ AutoIndent->False,
+ CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, 
+   3.936039505742253*^9, 3.936039551514239*^9},
+ AutoSpacing->False,
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[26]:=",ExpressionUUID->"a3add189-2c87-4545-bd60-3c14cff89f78"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"file", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
+    "\"\<WMVimLink_tmp.txt\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"file", ",", " ", "\"\<\>\""}], "]"}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"clear", " ", "prev", " ", "tmp", " ", "file"}], " ", "*)"}], "\n", 
+  RowBox[{"lastChangedTime", " ", "=", " ", 
+   RowBox[{"FileDate", "[", "file", "]"}]}], ";"}]}], "Input",
+ AutoIndent->False,
+ CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
+   3.936034519909929*^9, 3.9360345569903727`*^9}, {3.9360346129531507`*^9, 
+   3.936034780892109*^9}, {3.9360349112022915`*^9, 3.936035037181306*^9}, 
+   3.936035198403613*^9, 3.936035232273954*^9, {3.9360355326947002`*^9, 
+   3.9360355463342066`*^9}, {3.936035617333312*^9, 3.936035621116065*^9}, {
+   3.9360362150940437`*^9, 3.9360362186211576`*^9}, {3.936037520602837*^9, 
+   3.9360376419245048`*^9}, {3.936037687071768*^9, 3.9360376890531096`*^9}, {
+   3.936037743862237*^9, 3.936037780284924*^9}, {3.93603785316609*^9, 
+   3.9360378853533306`*^9}, {3.9360395069904003`*^9, 
+   3.9360395544364147`*^9}, {3.9360661512800045`*^9, 
+   3.9360661513858976`*^9}, {3.9360666373842263`*^9, 3.9360666376716204`*^9}, 
+   3.9360695456811953`*^9},
+ AutoSpacing->False,
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->"In[27]:=",ExpressionUUID->"878336eb-89fc-479a-8449-e8162b075316"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"importToCell", "[", "]"}], " ", ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", "\n", "\t", 
+    RowBox[{
+     RowBox[{"NotebookLocate", "[", "\"\<VimIO\>\"", "]"}], ";", " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{"select", " ", "prev", " ", "imported", " ", "cells"}], " ", 
+      "*)"}], "\n", "\t", 
+     RowBox[{"NotebookDelete", "[", 
+      RowBox[{"SelectedNotebook", "[", "]"}], "]"}], ";", " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{"and", " ", "delete", " ", "them"}], " ", "*)"}], "\n", "\n", 
+     "\t", 
+     RowBox[{"SelectionMove", "[", 
+      RowBox[{
+       RowBox[{"InputNotebook", "[", "]"}], ",", " ", "After", ",", " ", 
+       "Notebook"}], "]"}], ";", " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{"go", " ", "to", " ", "EOF"}], " ", "*)"}], "\n", "\n", "\t", 
+     RowBox[{"NotebookWrite", "[", 
+      RowBox[{
+       RowBox[{"EvaluationNotebook", "[", "]"}], ",", " ", 
+       RowBox[{"Cell", "[", 
+        RowBox[{
+         RowBox[{"Import", "[", 
+          RowBox[{"file", ",", " ", "\"\<text\>\""}], "]"}], ",", " ", 
+         "\"\<Input\>\"", ",", " ", 
+         RowBox[{"CellTags", " ", "\[Rule]", " ", "\"\<VimIO\>\""}]}], "]"}], 
+       ",", " ", 
+       RowBox[{"(*", "select", "*)"}], " ", "All"}], "]"}], ";", "\n", "\t", 
+     RowBox[{"SetOptions", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"SelectedCells", "[", "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+       RowBox[{"ShowCellTags", "\[Rule]", "True"}]}], "]"}], ";", "\n", "\t", 
+     RowBox[{"FrontEndExecute", "@", 
+      RowBox[{"FrontEndToken", "[", 
+       RowBox[{
+        RowBox[{"SelectedNotebook", "[", "]"}], ",", " ", "\"\<Style\>\"", 
+        ",", " ", "\"\<Input\>\""}], "]"}]}], ";", " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{"Press", " ", "Alt"}], "+", 
+       RowBox[{"8", " ", "for", " ", "formatting", " ", "to", " ", "go"}]}], 
+      " ", "*)"}], "\n", "\t", 
+     RowBox[{"FrontEndExecute", "@", 
+      RowBox[{"FrontEndToken", "[", 
+       RowBox[{
+        RowBox[{"SelectedNotebook", "[", "]"}], ",", " ", 
+        "\"\<Evaluate\>\""}], "]"}]}], ";"}]}], "\n", "\t", "]"}]}]], "Input",
+ CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, 
+   3.936039552396455*^9, {3.9360399110847225`*^9, 3.936039957487999*^9}, {
+   3.936040094034891*^9, 3.9360400954371233`*^9}, {3.936040444954297*^9, 
+   3.9360404465242634`*^9}, {3.936067169824154*^9, 3.9360671703029795`*^9}, {
+   3.936069549747589*^9, 
+   3.9360695503743696`*^9}},ExpressionUUID->"3c4381f1-8577-4e8c-8c5e-\
+cbc092632fef"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Dynamic", "[", 
+   RowBox[{"Refresh", "[", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t", 
+      RowBox[{
+       RowBox[{"If", "[", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"FileDate", "[", "file", "]"}], " ", ">", " ", 
+          "lastChangedTime"}], ",", "\n", "\t\t", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"importToCell", "[", "]"}], ",", " ", 
+           RowBox[{"lastChangedTime", " ", "=", " ", 
+            RowBox[{"FileDate", "[", "file", "]"}]}]}], "}"}], ",", "\n", 
+         "\t\t", "Null"}], " ", "]"}], ",", "\n", "\t", "\n", "\t", 
+       RowBox[{"FileDate", "[", "file", "]"}]}], "\n", "\t", "}"}], ",", "\n", 
+     RowBox[{"UpdateInterval", "\[Rule]", "3"}]}], "]"}], "]"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "should", " ", "it", " ", "be", " ", "made", " ", "to", " ", "docked", " ",
+     "cells", " ", "for", " ", "Dynamics", " ", "to", " ", "be", " ", 
+    "always", " ", 
+    RowBox[{"visible", "?"}]}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
+  3.936040019594578*^9, 3.93604002792704*^9}, {3.936040108105692*^9, 
+  3.9360401738270435`*^9}, {3.9360402088828335`*^9, 3.9360402360911193`*^9}, {
+  3.936040277644062*^9, 3.93604036478409*^9}, {3.9360403982769065`*^9, 
+  3.936040398747773*^9}, {3.9360407009134007`*^9, 3.936040718096692*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"548fed23-5791-4d2f-a491-fbfe27dbafd0"],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   Refresh[{
+     If[FileDate[$CellContext`file] > $CellContext`lastChangedTime, {
+       $CellContext`importToCell[], $CellContext`lastChangedTime = 
+       FileDate[$CellContext`file]}, Null], 
+     FileDate[$CellContext`file]}, UpdateInterval -> 3], StandardForm],
+  ImageSizeCache->{186., {6.6, 13.6}}]], "Output",
+ CellChangeTimes->{
+  3.9360403725639734`*^9, 3.936040412593732*^9, {3.9360407219404984`*^9, 
+   3.936040728432726*^9}, {3.9360408339981847`*^9, 3.936040856891311*^9}, 
+   3.9360650975874014`*^9, 3.936066153445978*^9, 3.936066646254898*^9, 
+   3.936069547854512*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"f8755328-e2a7-4c2a-b22f-86cceb6c8b10"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["IO", "Title",
+ CellChangeTimes->{{3.663156514169795*^9, 3.66315652513911*^9}, {
+  3.9360389282254133`*^9, 
+  3.936038928314213*^9}},ExpressionUUID->"829c3b04-e96f-472b-add6-\
+f0ebfd349ad6"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Notebook[{Cell[\"\", \"Input\"]}, FrontEndVersion -> \"12.2 for Microsoft \
+Windows (64-bit) (December 12, 2020)\", 
+  StyleDefinitions -> \"WM_Pups_Stylesheet_ACTIVE.nb\"]\
+\>", "Input",
+ ShowCellTags->True,
+ CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
+  3.9360666315689816`*^9, 3.9360666315699744`*^9}, {3.9360670112773376`*^9, 
+  3.936067017289531*^9}},
+ TagBoxOptions->{TagBoxNote->"Pups"},
+ CellTags->"VimIO",
+ CellLabel->"In[32]:=",ExpressionUUID->"17747f62-8780-40f9-8025-aeec01eb775f"],
+
+Cell[BoxData[
+ RowBox[{"Notebook", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"Cell", "[", 
+     RowBox[{"\<\"\"\>", ",", "\<\"Input\"\>"}], "]"}], "}"}], ",", 
+   RowBox[{
+   "FrontEndVersion", 
+    "\[Rule]", "\<\"12.2 for Microsoft Windows (64-bit) (December 12, 2020)\"\
+\>"}], ",", 
+   RowBox[{
+   "StyleDefinitions", "\[Rule]", "\<\"WM_Pups_Stylesheet_ACTIVE.nb\"\>"}]}], 
+  "]"}]], "Output",
+ CellChangeTimes->{{3.9360666316022196`*^9, 3.936066646280316*^9}, 
+   3.936069547864695*^9},
+ CellTags->"VimIO",
+ CellLabel->"Out[32]=",ExpressionUUID->"0e0c8611-ff1e-4a61-a46d-d895628f892b"]
+}, Open  ]]
+}, Open  ]]
+},
+BlinkingCellInsertionPoint->False,
+CellInsertionPointColor->RGBColor[0., 0.5, 0.96],
+CellInsertionPointCell->Cell[
+  BoxData[
+   GraphicsBox[{
+     RGBColor[0., 0.5, 0.96], 
+     TagBox[
+      PolygonBox[{{0, -40}, {0, 45}, {130, 0}}], "Triangle"], 
+     RectangleBox[{0, -6}, {2000, 6}], 
+     RectangleBox[{1900, -15}, {2000, 15}]}, ImageSize -> 500, 
+    PlotRange -> {{2, 2000}, {-37, 25}}]], "Text", CellFrame -> 0, 
+  CellFrameMargins -> 0, CellBaseline -> Center, CellFrameLabelMargins -> 0, 
+  CellMargins -> 0, Editable -> False, Selectable -> False],
+NotebookEventActions->{},
+WindowSize->{742.8, 820.1999999999999},
+WindowMargins->{{Automatic, -383.39999999999986`}, {649.2, Automatic}},
+DockedCells->{},
+Magnification:>0.8 Inherited,
+FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
+StyleDefinitions->Notebook[{
+   Cell[
+    CellGroupData[{
+      Cell[
+      "Info", "Section", ShowGroupOpener -> "InsideFrame", 
+       CellMargins -> {{10, 2}, {0, 2}}, CellFrameMargins -> 8, 
+       CellFrameLabels -> {}, 
+       CellChangeTimes -> {{3.812410793238985*^9, 3.812410806871765*^9}, {
+        3.8787966631080446`*^9, 3.8787966638806486`*^9}, {
+        3.8789055345365343`*^9, 3.878905567567875*^9}}, FontSize -> 20, 
+       Background -> GrayLevel[0.658824]], 
+      Cell[
+       TextData[
+        StyleBox[
+        "Stylesheet Developed by Roman Averyanov", 
+         FontVariations -> {"Underline" -> True}]], "Text", 
+       CellMargins -> {{10, 3}, {3, 3}}, CellFrameMargins -> 2, 
+       CellChangeTimes -> {{3.87877890574933*^9, 3.878778923321144*^9}, {
+         3.8787822804766207`*^9, 3.8787822862870197`*^9}, {
+         3.878785343153904*^9, 3.8787853444165573`*^9}, 
+         3.878785571070258*^9, {3.8787964622753563`*^9, 
+         3.878796513106921*^9}, {3.878796716956583*^9, 
+         3.8787967639703417`*^9}, {3.878872917869211*^9, 
+         3.878872957442175*^9}, 3.87890560307768*^9, 3.8789056531468763`*^9, {
+         3.8789057716845875`*^9, 3.8789057858362656`*^9}}, Background -> 
+       None]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+      "Version Hystory", "Title", ShowGroupOpener -> "InsideFrame", 
+       CellMargins -> {{10, 2}, {0, 2}}, CellFrameMargins -> 8, 
+       CellFrameLabels -> {}, 
+       CellChangeTimes -> {{3.812410793238985*^9, 3.812410806871765*^9}, {
+        3.8133837809928565`*^9, 3.813383782523656*^9}, {3.813383819384885*^9, 
+        3.8133838430484486`*^9}, {3.8787789160468993`*^9, 
+        3.8787789168279653`*^9}, {3.8787966663188505`*^9, 
+        3.8787966770477505`*^9}, {3.8789055461362705`*^9, 
+        3.878905557915965*^9}}, FontSize -> 20, Background -> 
+       GrayLevel[0.658824]], 
+      Cell[
+       TextData[{
+         StyleBox["01 Dec 2022:", FontVariations -> {"Underline" -> True}], 
+         "\n- Added Dingbat-buttons that autoswap between Input/UnevalInput \
+cell styles", 
+         StyleBox[
+         "\n\n30 Nov 2022:", FontVariations -> {"Underline" -> True}], 
+         "\n- Added \[LeftGuillemet]Input Unevaluated\[RightGuillemet] Style\n\
+- Added Tabstop=4 for text\n- Increased all cells left margins +5 (for better \
+display at HighRes monitors)\n- Started Version hystory tracking"}], "Text", 
+       CellMargins -> {{10, 3}, {3, 3}}, CellFrameMargins -> 2, 
+       CellChangeTimes -> {{3.87877890574933*^9, 3.878778923321144*^9}, {
+         3.8787822804766207`*^9, 3.8787822862870197`*^9}, {
+         3.878785343153904*^9, 3.8787853444165573`*^9}, 
+         3.878785571070258*^9, {3.8787964622753563`*^9, 
+         3.878796513106921*^9}, {3.878796716956583*^9, 
+         3.8787967639703417`*^9}, {3.878872917869211*^9, 
+         3.878872957442175*^9}, {3.87890560307768*^9, 
+         3.8789056286572666`*^9}}, Background -> None]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+      "[1] Inheritance", "Title", ShowGroupOpener -> "InsideFrame", 
+       CellMargins -> {{10, 2}, {0, 2}}, CellFrameMargins -> 8, 
+       CellFrameLabels -> {}, 
+       CellChangeTimes -> {{3.812410793238985*^9, 3.812410806871765*^9}, {
+        3.8133837809928565`*^9, 3.813383795848691*^9}, {3.878796669135665*^9, 
+        3.8787966698020744`*^9}, {3.878905538076784*^9, 
+        3.878905539685927*^9}}, FontSize -> 20, Background -> 
+       GrayLevel[0.658824]], 
+      Cell[
+       StyleData[StyleDefinitions -> "Default.nb"], 
+       CellMargins -> {{10, 0}, {0, 0}}], 
+      Cell[
+       StyleData[All], FontFamily -> "Courier New", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}], 
+      Cell[
+       StyleData[All], FontFamily -> "Courier New", FontSize -> 14]}, 
+     Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+      "[2] Chapters/Grouping Cells", "Title", ShowGroupOpener -> 
+       "InsideFrame", CellMargins -> {{10, 2}, {0, 2}}, CellFrameMargins -> 8,
+        CellFrameLabels -> {}, 
+       CellChangeTimes -> {{3.812410793238985*^9, 3.812410806871765*^9}, {
+         3.8133837809928565`*^9, 3.813383795848691*^9}, {
+         3.8787964442385874`*^9, 3.8787964493335123`*^9}, {
+         3.8787967092985497`*^9, 3.878796712792356*^9}, 3.878905550955177*^9},
+        FontSize -> 20, Background -> GrayLevel[0.658824]], 
+      Cell[
+       StyleData["Title"], CellFrame -> {{3, 3}, {3, 3}}, CellDingbat -> None,
+        ShowCellBracket -> True, ShowGroupOpener -> True, 
+       CellMargins -> {{30, Inherited}, {0, 2}}, GroupOpenerColor -> 
+       RGBColor[0.737255, 0.262745, 0.572549], 
+       CellBracketOptions -> {"Margins" -> {0, 2}, "Widths" -> {0, 7}}, 
+       CellElementSpacings -> {"ClosedGroupTopMargin" -> 4}, 
+       StyleKeyMapping -> {
+        "Tab" -> "Chapter", KeyEvent["Tab", Modifiers -> {Shift}] -> "Title"},
+        CellGroupingRules -> "TitleGrouping", CellLabelPositioning -> 
+       Automatic, 
+       CellLabelMargins -> {{12, Inherited}, {Inherited, Inherited}}, 
+       CellFrameMargins -> 5, CellFrameColor -> GrayLevel[0], 
+       CellFrameStyle -> {}, CellFrameLabels -> {{None, "1"}, {None, None}}, 
+       CellFrameLabelMargins -> 3, 
+       CellChangeTimes -> {{3.663156514169795*^9, 3.66315652513911*^9}}, 
+       FontFamily -> "Courier New", FontSize -> 14, FontWeight -> "Bold", 
+       FontSlant -> "Plain", FontTracking -> "Plain", 
+       FontVariations -> {
+        "Outline" -> False, "Shadow" -> False, "StrikeThrough" -> False, 
+         "Underline" -> False}, FontColor -> RGBColor[0., 0., 0.], Background -> 
+       RGBColor[0.8431372549019608, 0.6784313725490196, 0.9137254901960784]], 
+      Cell[
+       StyleData["Chapter"], CellFrame -> {{3, 3}, {3, 3}}, ShowCellBracket -> 
+       True, ShowGroupOpener -> True, 
+       CellMargins -> {{35, Inherited}, {0, 2}}, 
+       CellBracketOptions -> {"Margins" -> {0, 2}, "Widths" -> {0, 7}}, 
+       CellElementSpacings -> {
+        "CellMinHeight" -> 12, "ClosedCellHeight" -> 19, 
+         "ClosedGroupTopMargin" -> 4}, 
+       StyleKeyMapping -> {
+        "Tab" -> "Subchapter", KeyEvent["Tab", Modifiers -> {Shift}] -> 
+         "Title"}, ShowCellLabel -> Automatic, 
+       CellLabelMargins -> {{12, Inherited}, {Inherited, Inherited}}, 
+       CellFrameMargins -> 3, CellFrameColor -> GrayLevel[0], 
+       CellFrameLabels -> {{None, "2"}, {None, None}}, CellFrameLabelMargins -> 
+       3, CellChangeTimes -> {{3.6631565141853085`*^9, 3.66315652513911*^9}}, 
+       MenuCommandKey :> "2", FontFamily -> "Courier New", FontSize -> 14, 
+       FontWeight -> "Bold", FontSlant -> "Plain", FontTracking -> "Plain", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+       FontColor -> RGBColor[0., 0., 0.], Background -> 
+       RGBColor[0.917647, 0.733333, 0.776471]], 
+      Cell[
+       StyleData["Subchapter"], CellFrame -> {{2, 0}, {2, 0}}, CellDingbat -> 
+       None, ShowGroupOpener -> True, 
+       CellMargins -> {{40, Inherited}, {0, 2}}, 
+       StyleKeyMapping -> {
+        "Tab" -> "Section", KeyEvent["Tab", Modifiers -> {Shift}] -> 
+         "Chapter"}, CellFrameMargins -> 3, CellFrameColor -> GrayLevel[0], 
+       CellFrameLabels -> {{None, "3"}, {None, None}}, CellFrameLabelMargins -> 
+       3, MenuCommandKey :> "3", FontFamily -> "Courier New", FontSize -> 14, 
+       FontWeight -> "Bold", FontSlant -> "Plain", FontTracking -> "Plain", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+       FontColor -> RGBColor[0., 0., 0.], Background -> 
+       RGBColor[0.72549, 0.866667, 0.784314]], 
+      Cell[
+       StyleData["Section"], CellFrame -> {{0, 0}, {2, 0}}, ShowGroupOpener -> 
+       True, CellMargins -> {{45, Inherited}, {0, 2}}, 
+       StyleKeyMapping -> {
+        "Tab" -> "Subsection", KeyEvent["Tab", Modifiers -> {Shift}] -> 
+         "Subchapter"}, CellFrameMargins -> 3, CellFrameColor -> GrayLevel[0],
+        CellFrameLabels -> {{None, "4"}, {None, None}}, CellFrameLabelMargins -> 
+       3, FontFamily -> "Courier New", FontSize -> 14, FontWeight -> "Bold", 
+       FontSlant -> "Plain", FontTracking -> "Plain", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+       FontColor -> RGBColor[0., 0., 0.], Background -> 
+       RGBColor[0.772549, 0.913725, 0.901961]], 
+      Cell[
+       StyleData["Subsection"], CellFrame -> {{0, 0}, {1, 0}}, 
+       ShowGroupOpener -> True, CellMargins -> {{50, Inherited}, {0, 2}}, 
+       StyleKeyMapping -> {
+        "Tab" -> "Subsubsection", KeyEvent["Tab", Modifiers -> {Shift}] -> 
+         "Section"}, CellFrameMargins -> 3, CellFrameColor -> GrayLevel[0], 
+       CellFrameLabels -> {{None, "5"}, {None, None}}, CellFrameLabelMargins -> 
+       3, FontFamily -> "Courier New", FontSize -> 14, FontWeight -> "Bold", 
+       FontSlant -> "Plain", FontTracking -> "Plain", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+       FontColor -> RGBColor[0., 0., 0.], Background -> 
+       RGBColor[0.988235, 0.839216, 0.933333]], 
+      Cell[
+       StyleData["Subsubsection"], ShowGroupOpener -> True, 
+       CellMargins -> {{55, Inherited}, {0, 2}}, 
+       StyleKeyMapping -> {
+        "Tab" -> "Subsubsection", KeyEvent["Tab", Modifiers -> {Shift}] -> 
+         "Subsection"}, CellFrameMargins -> 3, CellFrameColor -> GrayLevel[0],
+        CellFrameLabels -> {{None, "6"}, {None, None}}, CellFrameLabelMargins -> 
+       3, FontFamily -> "Courier New", FontSize -> 14, FontWeight -> "Bold", 
+       FontSlant -> "Plain", FontTracking -> "Plain", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+       FontColor -> RGBColor[0., 0., 0.], Background -> GrayLevel[0.85]], 
+      Cell[
+      "Info: Subtitle and Subsubtitle are mentioned here for removing \
+Alt+2/Alt+3 from them bleyat", "Text", CellMargins -> {{10, 3}, {3, 3}}, 
+       CellFrameMargins -> 2, 
+       CellChangeTimes -> {{3.87877890574933*^9, 3.878778923321144*^9}, {
+        3.8787822804766207`*^9, 3.8787822862870197`*^9}, {
+        3.878785343153904*^9, 3.8787853444165573`*^9}}, Background -> 
+       GrayLevel[0.8]], 
+      Cell[
+       StyleData["Subtitle"], CellMargins -> {{25, Inherited}, {0, 2}}, 
+       MenuCommandKey :> None, FontSize -> 14], 
+      Cell[
+       StyleData["Subsubtitle"], CellMargins -> {{25, Inherited}, {0, 2}}, 
+       MenuCommandKey :> None, FontSize -> 14]}, Open]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+      "[3] Text and I/O", "Title", ShowGroupOpener -> "InsideFrame", 
+       CellMargins -> {{10, 2}, {0, 2}}, CellFrameMargins -> 8, 
+       CellFrameLabels -> {}, 
+       CellChangeTimes -> {{3.812410793238985*^9, 3.812410806871765*^9}, {
+        3.8133837809928565`*^9, 3.813383795848691*^9}, {
+        3.8787964442385874`*^9, 3.8787964493335123`*^9}, {
+        3.8787967092985497`*^9, 3.878796712792356*^9}, {
+        3.8789055415258102`*^9, 3.878905542746009*^9}}, FontSize -> 20, 
+       Background -> GrayLevel[0.658824]], 
+      Cell[
+      "\[Bullet] Info: Hotkeys: Text 7, Input 8, Output 9", "Text", 
+       CellMargins -> {{10, 3}, {3, 3}}, CellFrameMargins -> 2, 
+       CellChangeTimes -> {{3.87877890574933*^9, 3.878778923321144*^9}, {
+         3.8787822804766207`*^9, 3.8787822862870197`*^9}, {
+         3.878785343153904*^9, 3.8787853444165573`*^9}, 
+         3.878785571070258*^9, {3.8788729777164183`*^9, 
+         3.878872978024197*^9}}, Background -> GrayLevel[0.8]], 
+      Cell[
+       StyleData["Text"], CellFrame -> 1, 
+       CellMargins -> {{55, Inherited}, {0, 2}}, CellFrameColor -> 
+       GrayLevel[0.682353], CellFrameLabels -> {{None, None}, {None, None}}, 
+       CellFrameLabelMargins -> 3, TabSpacings -> {4}, FontFamily -> 
+       "Courier New", FontSize -> 14, FontSlant -> "Plain", FontTracking -> 
+       "Plain", Background -> GrayLevel[0.97]], 
+      Cell[
+      "\[Bullet] Info: Dingbat codes for Input/UnevalInput are inside \
+\[LeftGuillemet]CellDingbat\[RightGuillemet] options\n\[Bullet] Button \
+Appearance options: \[LeftGuillemet]Frameless\[RightGuillemet], \
+\[LeftGuillemet]DialogBox\[RightGuillemet]\n\[Bullet] Do NOT click on them \
+inside this doc (style definitions) or all will break!!!", "Text", 
+       CellMargins -> {{10, 3}, {3, 3}}, CellFrameMargins -> 2, 
+       CellChangeTimes -> {{3.87877890574933*^9, 3.878778923321144*^9}, {
+         3.8787822804766207`*^9, 3.8787822862870197`*^9}, {
+         3.878785343153904*^9, 3.8787853444165573`*^9}, 
+         3.878785571070258*^9, {3.878869730887599*^9, 
+         3.8788697493387423`*^9}, {3.878871579888234*^9, 
+         3.8788715984863625`*^9}, {3.8788729690695877`*^9, 
+         3.878873016255663*^9}}, Background -> GrayLevel[0.8]], 
+      Cell[
+       StyleData[
+       "PUPS_Unevaluated_Input", StyleDefinitions -> StyleData["Input"]], 
+       CellDingbat -> Cell[
+         BoxData[
+          ButtonBox[
+          "\[EmptyUpTriangle]", Appearance -> "Frameless", 
+           BaseStyle -> {
+            FontColor -> RGBColor[0.609804, 0.811765, 0.670588], FontOpacity -> 
+             1}, ButtonFunction :> (SelectionMove[
+              ButtonNotebook[], All, ButtonCell]; FrontEndExecute[
+              FrontEndToken[
+               EvaluationCell[], "Style", "Input"]]), 
+           ImageMargins -> {{0, 10}, {0, 0}}, ContentPadding -> False, 
+           FrameMargins -> {{1, 1}, {1, 0}}, Evaluator -> Automatic, Method -> 
+           "Queued"]], Background -> None], CellMargins -> {{60, 10}, {0, 2}},
+        Evaluatable -> False, 
+       CellLabelMargins -> {{12, Inherited}, {Inherited, Inherited}}, 
+       CellFrameMargins -> 8, CellFrameColor -> 
+       RGBColor[0.609804, 0.811765, 0.670588], CellFrameStyle -> {{
+          Directive[
+           Dashing[{2, 2}]], Null}, {Null, Null}}, 
+       CellFrameLabels -> {{None, None}, {None, None}}, 
+       CellChangeTimes -> {{3.935994396333798*^9, 3.935994397021124*^9}}, 
+       MenuSortingValue -> 10000, MenuCommandKey :> None, FontFamily -> 
+       "Courier New", FontSize -> 13, FontWeight -> "DemiBold", FontSlant -> 
+       "Plain", FontTracking -> "Plain", FontOpacity -> 0.4, Background -> 
+       RGBColor[0.9, 0.9, 0.9, 0.5]], 
+      Cell[
+       StyleData["Input"], CellFrame -> {{2, 0}, {0, 0}}, CellDingbat -> Cell[
+         BoxData[
+          ButtonBox[
+          "\[FilledUpTriangle]", Appearance -> "Frameless", 
+           BaseStyle -> {
+            FontColor -> RGBColor[0.109804, 0.411765, 0.0470588]}, 
+           ButtonFunction :> (SelectionMove[
+              ButtonNotebook[], All, ButtonCell]; FrontEndExecute[
+              FrontEndToken[
+               EvaluationCell[], "Style", "PUPS_Unevaluated_Input"]]), 
+           ImageMargins -> {{0, 10}, {0, 0}}, ContentPadding -> False, 
+           FrameMargins -> {{1, 1}, {1, 0}}, Evaluator -> Automatic, Method -> 
+           "Queued"]], Background -> None], ShowCellBracket -> True, 
+       ShowGroupOpener -> None, CellMargins -> {{60, 10}, {0, 2}}, 
+       CellBracketOptions -> {"Margins" -> {0, 2}, "Widths" -> {0, 7}}, 
+       ShowCellLabel -> False, 
+       CellLabelMargins -> {{12, Inherited}, {Inherited, Inherited}}, 
+       CellFrameMargins -> {{8, 8}, {8, 8}}, CellFrameColor -> 
+       RGBColor[0.109804, 0.411765, 0.0470588], 
+       CellFrameLabels -> {{None, None}, {None, None}}, CellFrameLabelMargins -> 
+       3, AutoIndent -> False, 
+       CellChangeTimes -> {{3.9359943985937123`*^9, 3.9359943996490297`*^9}}, 
+       AutoSpacing -> False, MenuCommandKey :> "8", FontFamily -> Dynamic[
+         CurrentValue[{StyleHints, "CodeFont"}]], FontSize -> 13, FontWeight -> 
+       "DemiBold", FontSlant -> "Plain", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+       Background -> 
+       RGBColor[0.9333333333333333, 0.9568627450980393, 0.9333333333333333]], 
+      Cell[
+       StyleData["Output"], CellFrame -> {{2, 0}, {0, 0}}, CellDingbat -> 
+       None, ShowGroupOpener -> None, CellMargins -> {{60, 10}, {0, 2}}, 
+       CellElementSpacings -> {"CellMinHeight" -> 12}, ShowCellLabel -> False,
+        CellFrameColor -> GrayLevel[0.7], CellFrameStyle -> {{
+          Directive[
+           Dashing[{5, 2}]], Null}, {Null, Null}}, 
+       CellFrameLabels -> {{None, None}, {None, None}}, CellFrameLabelMargins -> 
+       3, MenuCommandKey :> "9", FontFamily -> Dynamic[
+         CurrentValue[{StyleHints, "CodeFont"}]], FontSize -> 13, FontWeight -> 
+       "Plain", FontSlant -> "Plain", 
+       FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}, 
+       Background -> GrayLevel[1]], 
+      Cell[
+       StyleData["Message"], CellFrame -> {{2, 0}, {0, 0}}, CellDingbat -> 
+       None, CellMargins -> {{60, 10}, {0, 2}}, CellGroupingRules -> 
+       "OutputGrouping", PageBreakWithin -> False, GroupPageBreakWithin -> 
+       False, GeneratedCell -> True, CellAutoOverwrite -> True, ShowCellLabel -> 
+       False, CellLabelPositioning -> Automatic, 
+       CellFrameMargins -> {{4, 4}, {2, 2}}, CellFrameColor -> 
+       RGBColor[0.937255, 0.305882, 0.305882], 
+       CellFrameLabels -> {{None, Inherited}, {None, Inherited}}, 
+       CellFrameLabelMargins -> 10, DefaultFormatType -> 
+       DefaultOutputFormatType, "TwoByteSyntaxCharacterAutoReplacement" -> 
+       True, HyphenationOptions -> {
+        "HyphenationCharacter" -> "\[Continuation]"}, AutoItalicWords -> {}, 
+       LanguageCategory -> None, FormatType -> InputForm, CounterIncrements -> 
+       "Message", StyleMenuListing -> None, FontFamily -> "Courier New", 
+       FontSize -> 14, FontColor -> RGBColor[0.6, 0.100008, 0.100008], 
+       Background -> RGBColor[1, 0.905882, 0.701961], 
+       AutoStyleOptions -> {"UnmatchedBracketStyle" -> None}], 
+      Cell[
+       StyleData["Print"], CellFrame -> {{2, 0}, {0, 0}}, CellDingbat -> Cell[
+         BoxData[
+          StyleBox[
+          "Print ", StripOnInput -> False, 
+           FontVariations -> {"Underline" -> True}, FontColor -> 
+           GrayLevel[0.57]]], Background -> {}, FontSize -> 10], 
+       CellMargins -> {{60, 10}, {0, 2}}, StripStyleOnPaste -> True, 
+       PageBreakWithin -> False, GroupPageBreakWithin -> False, GeneratedCell -> 
+       True, CellAutoOverwrite -> True, ShowCellLabel -> False, 
+       CellFrameMargins -> 3, CellFrameColor -> GrayLevel[0.7], 
+       CellFrameLabels -> {{None, None}, {None, None}}, DefaultFormatType -> 
+       DefaultOutputFormatType, ContextMenu -> 
+       FEPrivate`FrontEndResource["ContextMenus", "Output"], 
+       AutoItalicWords -> {}, AutoQuoteCharacters -> {}, 
+       PasteAutoQuoteCharacters -> {}, LanguageCategory -> None, FormatType -> 
+       InputForm, ShowStringCharacters -> False, CounterIncrements -> "Print",
+        StyleMenuListing -> None], 
+      Cell[
+       StyleData["Echo"], CellFrame -> {{2, 0}, {0, 0}}, CellDingbat -> Cell[
+         BoxData[
+          StyleBox[
+          "Echo  ", StripOnInput -> False, 
+           FontVariations -> {"Underline" -> True}, FontColor -> 
+           GrayLevel[0.57]]], Background -> {}, FontSize -> 10, CellFrame -> 
+         0], CellMargins -> {{60, 10}, {0, 2}}, StripStyleOnPaste -> True, 
+       PageBreakWithin -> False, GroupPageBreakWithin -> False, GeneratedCell -> 
+       True, CellAutoOverwrite -> True, ShowCellLabel -> False, 
+       CellFrameMargins -> 3, CellFrameColor -> GrayLevel[0.7], 
+       CellFrameLabels -> {{None, None}, {None, None}}, CellFrameLabelMargins -> 
+       3, DefaultFormatType -> DefaultOutputFormatType, ContextMenu -> 
+       FEPrivate`FrontEndResource["ContextMenus", "Output"], 
+       AutoItalicWords -> {}, AutoQuoteCharacters -> {}, 
+       PasteAutoQuoteCharacters -> {}, LanguageCategory -> None, FormatType -> 
+       InputForm, ShowStringCharacters -> False, CounterIncrements -> "Echo", 
+       StyleMenuListing -> None], 
+      Cell[
+      "Info: \[LeftGuillemet]CellExpression\[RightGuillemet] is used for \
+Ctrl+Shift+E hotkey", "Text", CellMargins -> {{10, 3}, {3, 3}}, 
+       CellFrameMargins -> 2, 
+       CellChangeTimes -> {{3.87877890574933*^9, 3.878778923321144*^9}, {
+        3.8787822804766207`*^9, 3.8787822862870197`*^9}, {
+        3.878785343153904*^9, 3.8787853444165573`*^9}, {3.878785571070258*^9, 
+        3.878785578209223*^9}}, FontSize -> 12, FontColor -> GrayLevel[0.2], 
+       Background -> GrayLevel[0.8]], 
+      Cell[
+       StyleData["CellExpression"], PageWidth :> Infinity, 
+       CellFrame -> {{2, 2}, {2, 2}}, ShowCellBracket -> True, 
+       CellMargins -> {{6, Inherited}, {Inherited, Inherited}}, ShowCellLabel -> 
+       False, CellFrameMargins -> 4, CellFrameColor -> 
+       RGBColor[0.596078, 0.172549, 0.301961], 
+       CellFrameLabels -> {{None, None}, {None, None}}, ContextMenu -> 
+       FEPrivate`FrontEndResource["ContextMenus", "CellExpression"], 
+       ShowSpecialCharacters -> False, AllowInlineCells -> False, Hyphenation -> 
+       False, AutoItalicWords -> {}, AutoQuoteCharacters -> {}, 
+       PasteAutoQuoteCharacters -> {}, LanguageCategory -> None, 
+       StyleMenuListing -> None, FontFamily -> Dynamic[
+         CurrentValue[{StyleHints, "CodeFont"}]], FontSize -> 12, 
+       PrivateFontOptions -> {"OperatorSubstitution" -> True}, Magnification -> 
+       1., Background -> GrayLevel[1]], 
+      Cell[
+       StyleData["InlineCell"], ShowCodeAssist -> False, 
+       CodeAssistOptions -> {"DynamicHighlighting" -> False}, TextAlignment -> 
+       Left, TranslationOptions -> {"Enabled" -> False}, LanguageCategory -> 
+       "Formula", ScriptLevel -> 1, StyleMenuListing -> None], 
+      Cell[
+       StyleData["InlineCellEditing"], CellFrame -> 1, CellFrameColor -> 
+       GrayLevel[0.784314], StyleMenuListing -> None, Background -> 
+       RGBColor[0.964706, 0.929412, 0.839216]]}, Open]]}, Visible -> False, 
+  FrontEndVersion -> 
+  "12.2 for Microsoft Windows (64-bit) (December 12, 2020)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"aa2b8bdf-428f-4e0a-a0b5-e9437cfb3946"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "VimIO"->{
+  Cell[8824, 216, 529, 11, 51, "Input",ExpressionUUID->"17747f62-8780-40f9-8025-aeec01eb775f",
+   CellTags->"VimIO"],
+  Cell[9356, 229, 594, 16, 42, "Output",ExpressionUUID->"0e0c8611-ff1e-4a61-a46d-d895628f892b",
+   CellTags->"VimIO"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"VimIO", 32882, 669}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 203, 4, 28, "Title",ExpressionUUID->"6d2b477a-8724-420e-ad23-6c0e6475d6ea"],
+Cell[786, 28, 810, 15, 90, "Text",ExpressionUUID->"8664a79e-e804-4c97-ae71-d750fd567f1a"],
+Cell[1599, 45, 624, 14, 27, "Input",ExpressionUUID->"a3add189-2c87-4545-bd60-3c14cff89f78"],
+Cell[2226, 61, 1476, 28, 58, "Input",ExpressionUUID->"878336eb-89fc-479a-8449-e8162b075316"],
+Cell[3705, 91, 2626, 60, 181, "Input",ExpressionUUID->"3c4381f1-8577-4e8c-8c5e-cbc092632fef"],
+Cell[CellGroupData[{
+Cell[6356, 155, 1497, 32, 163, "Input",ExpressionUUID->"548fed23-5791-4d2f-a491-fbfe27dbafd0"],
+Cell[7856, 189, 699, 13, 36, "Output",ExpressionUUID->"f8755328-e2a7-4c2a-b22f-86cceb6c8b10"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8604, 208, 195, 4, 28, "Title",ExpressionUUID->"829c3b04-e96f-472b-add6-f0ebfd349ad6"],
+Cell[CellGroupData[{
+Cell[8824, 216, 529, 11, 51, "Input",ExpressionUUID->"17747f62-8780-40f9-8025-aeec01eb775f",
+ CellTags->"VimIO"],
+Cell[9356, 229, 594, 16, 42, "Output",ExpressionUUID->"0e0c8611-ff1e-4a61-a46d-d895628f892b",
+ CellTags->"VimIO"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
