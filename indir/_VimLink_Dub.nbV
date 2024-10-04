@@ -1,0 +1,110 @@
+
+(* Func Defs  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+    clearFileContent[file_] := Export[file, ""];
+
+    deleteTaggedCells[tag_] := Module[{},
+        NotebookLocate[tag] (* select prev imported cells *)
+      ; NotebookDelete[SelectedNotebook[]] (* and delete them *)
+    ];
+
+    importFileToNewCellAndExecute[file_, newCellTag_] := Module[{},
+        SelectionMove[InputNotebook[], After, Notebook] (* go to EOF *)
+      ; NotebookWrite[
+            EvaluationNotebook[]
+          , Cell[
+                Import[file, "text"] (*"nb" imports and launches, "string" makes extra «\n» symbols*)
+              , "Input"
+              , CellTags -> newCellTag]
+          , All (*select all what was written*)]
+      ; SetOptions[
+            SelectedCells[][[1]]
+          , FontSize -> 2
+          , LineSpacing -> {0.7, 0}
+          , Background -> LightBlue
+          , CellFrameColor -> Blue
+          , CellDingbat ->
+                Cell[
+                    BoxData[StyleBox["⮸ ", FontColor -> GrayLevel[0.1]]]
+                  , Background -> {}
+                  , FontSize -> 15
+                ]
+        ]
+      ; FrontEndExecute @ FrontEndToken[EvaluationNotebook[], "Style", "Input"]
+      ; FrontEndExecute @ FrontEndToken[EvaluationNotebook[], "Evaluate"]
+    ];
+
+(* ____________________________________________________________________________/ }}}1 *)
+(* Status Cell ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+    constructCellContent[file_, fileLastUpdTime_, importedCellsTag_] :=
+        DynamicModule[ {lastChangedTime = fileLastUpdTime, secondsPassed},
+            Dynamic[
+                Refresh[
+                    (* file read actions: *)
+                    If[ FileDate[file] > lastChangedTime
+                      , { deleteTaggedCells[importedCellsTag]
+                        , importFileToNewCellAndExecute[file, importedCellsTag]
+                        , lastChangedTime = FileDate[file]
+                        }
+                      , Null
+                    ]   
+                    (* visuals: *)
+                  ; Row[
+                        {   Style["[WM-Vim-Link is Active]", Bold]
+                        ,   " Last file import happened at: "
+                        ,   DateString[FileDate[file]]
+                        ,   " ("
+                        ,   Dynamic[Refresh[
+                                secondsPassed = 
+                                    DateDifference[lastChangedTime, Now, "Second"]
+                                    // QuantityMagnitude
+                                    // Round
+                              ; If[secondsPassed > 10, ">10", secondsPassed]
+                              , UpdateInterval->1
+                            ]]
+                        ,   "s ago)"
+                        }
+                    ]
+                  , UpdateInterval -> 3
+                ]
+            ]
+        ];
+
+    (* Assembly: *)
+
+    constructStatusCell[file_, fileLastUpdTime_, importedCellsTag_] :=
+        Cell[
+            BoxData[ToBoxes[Dynamic[
+                If[ Length[Names["wmvl`*"]] > 0, (* this checks if NB was evaluated *)
+                    constructCellContent[file, fileLastUpdTime, importedCellsTag],
+                    "WM-Vim-Link is inactive (Evaluate notebook to activate it)"
+                ]
+            ]]]
+          , "DockedCell"
+          , CellFrame -> {{0, 0}, {2, 0}}
+          , CellFrameMargins -> {{8, 8}, {4, 4}}
+          , CellFrameColor -> Darker @ Gray
+        ];
+
+(* ____________________________________________________________________________/ }}}1 *)
+
+    launchPlugin[file_, fileLastUpdTime_, importedCellsTag_] := Module[{},
+        clearFileContent[file]
+      ; SetOptions[
+            InputNotebook[]
+          , DockedCells -> constructStatusCell[file, fileLastUpdTime, importedCellsTag]
+        ];
+      ; deleteTaggedCells[importedCellsTag]
+    ];
+
+    (* Launch *)
+
+    wmvl`file = NotebookDirectory[] <> "_WMVimLink_tmp.txt";
+    wmvl`tagForImportedCells = "VimIO";
+
+    launchPlugin[
+        wmvl`file
+      , FileDate[wmvl`file]
+      , wmvl`tagForImportedCells
+    ]

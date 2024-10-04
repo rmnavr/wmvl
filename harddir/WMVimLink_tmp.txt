@@ -1,0 +1,5 @@
+	iPanelASDF =
+		Grid[#, Frame -> All]& @
+			{ { Column[{iSelector, iClearSelection}], iPlotASDF}
+			, { "--" , iPlotCRMS }
+			}
