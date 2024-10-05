@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     39515,        805]
-NotebookOptionsPosition[     15821,        364]
-NotebookOutlinePosition[     39341,        803]
-CellTagsIndexPosition[     39298,        800]
+NotebookDataLength[     41918,        856]
+NotebookOptionsPosition[     18234,        415]
+NotebookOutlinePosition[     41744,        854]
+CellTagsIndexPosition[     41701,        851]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -29,7 +29,7 @@ Cell["WM-Vim-Link Plugin", "Title",
 Cell[BoxData[
  RowBox[{"\n", 
   RowBox[{"(*", " ", 
-   RowBox[{"Func", " ", "Defs", "  ", 
+   RowBox[{"Import", " ", "funcs", " ", 
     RowBox[{
     "\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\
 \:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\:203e\
@@ -65,11 +65,52 @@ Cell[BoxData[
        "]"}]}], ";"}], "\n", "\n", "    ", 
    RowBox[{
     RowBox[{
-     RowBox[{"importFileToNewCellAndExecute", "[", 
-      RowBox[{"file_", ",", " ", "newCellTag_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"calcFontSize", "[", "nLines_", "]"}], " ", ":=", " ", 
      RowBox[{"Module", "[", 
       RowBox[{
-       RowBox[{"{", "}"}], ",", "\n", "        ", 
+       RowBox[{"{", 
+        RowBox[{
+        "nSmall", ",", " ", "nBig", ",", " ", "fontMin", ",", " ", "fontMax", 
+         ",", " ", "k", ",", " ", "b"}], "}"}], ",", "\n", "        ", 
+       RowBox[{
+        RowBox[{"nSmall", "  ", "=", " ", "10"}], "\n", "      ", ";", " ", 
+        RowBox[{"nBig", "    ", "=", " ", "50"}], "\n", "      ", ";", " ", 
+        RowBox[{"fontMin", " ", "=", " ", "2"}], "\n", "      ", ";", " ", 
+        RowBox[{"fontMax", " ", "=", " ", "13"}], "\n", "      ", ";", " ", 
+        RowBox[{"k", " ", "=", " ", 
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"(", 
+            RowBox[{"fontMax", " ", "-", " ", "fontMin"}], ")"}]}], "/", 
+          RowBox[{"(", 
+           RowBox[{"nBig", " ", "-", " ", "nSmall"}], ")"}]}]}], "\n", 
+        "      ", ";", " ", 
+        RowBox[{"b", " ", "=", " ", 
+         RowBox[{"fontMax", " ", "-", " ", 
+          RowBox[{"k", "*", "nSmall"}]}]}], "\n", "      ", ";", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"nLines", " ", "<", " ", "nSmall"}], ",", " ", 
+          RowBox[{"Return", " ", "@", " ", "fontMax"}], ",", " ", "Null"}], 
+         "]"}], "\n", "      ", ";", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"nLines", " ", ">", " ", "nBig"}], "  ", ",", " ", 
+          RowBox[{"Return", " ", "@", " ", "fontMin"}], ",", " ", "Null"}], 
+         "]"}], "\n", "      ", ";", " ", 
+        RowBox[{"Return", " ", "@", " ", 
+         RowBox[{"Round", " ", "@", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"k", "*", "nLines"}], " ", "+", " ", "b"}], ")"}]}]}]}]}],
+       "\n", "    ", "]"}]}], ";"}], "\n", "\n", "    ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"importFileToNewCellAndExecute", "[", 
+      RowBox[{"file_", ",", " ", "newCellTag_"}], "]"}], " ", ":=", " ", 
+     RowBox[{"Module", "[", "\n", "        ", 
+      RowBox[{
+       RowBox[{"{", "importedText", "}"}], "\n", "      ", ",", " ", 
        RowBox[{
         RowBox[{"SelectionMove", "[", 
          RowBox[{
@@ -84,18 +125,23 @@ Cell[BoxData[
           " ", 
           RowBox[{"Cell", "[", "\n", "                ", 
            RowBox[{
-            RowBox[{"Import", "[", 
-             RowBox[{"file", ",", " ", "\"\<text\>\""}], "]"}], " ", 
+            RowBox[{"importedText", " ", "=", " ", 
+             RowBox[{"Import", "[", 
+              RowBox[{"file", ",", " ", "\"\<text\>\""}], "]"}]}], "\n", 
+            "                ", 
             RowBox[{"(*", 
              RowBox[{
-              RowBox[{
-              "\"\<nb\>\"", " ", "imports", " ", "and", " ", "launches"}], 
+              RowBox[{"why", " ", "not", " ", "\"\<nb\>\""}], " ", 
+              "\[LongDash]", " ", 
+              RowBox[{"it", " ", "imports", " ", "and", " ", "launches"}], 
               ",", " ", 
+              RowBox[{"why", " ", "not", " ", "\"\<string\>\""}], " ", 
+              "\[LongDash]", " ", 
               RowBox[{
-              "\"\<string\>\"", " ", "makes", " ", "extra", " ", 
-               "\[LeftGuillemet]", "\\n", "\[RightGuillemet]", " ", 
-               "symbols"}]}], "*)"}], "\n", "              ", ",", " ", 
-            "\"\<Input\>\"", "\n", "              ", ",", " ", 
+              "it", " ", "makes", " ", "extra", " ", "\[LeftGuillemet]", 
+               "\\n", "\[RightGuillemet]", " ", "symbols"}]}], "*)"}], "\n", 
+            "              ", ",", " ", "\"\<Input\>\"", "\n", 
+            "              ", ",", " ", 
             RowBox[{"CellTags", " ", "->", " ", "newCellTag"}]}], "]"}], "\n",
            "          ", ",", " ", "All"}], " ", 
          RowBox[{"(*", 
@@ -107,8 +153,11 @@ Cell[BoxData[
           RowBox[{
            RowBox[{"SelectedCells", "[", "]"}], "[", 
            RowBox[{"[", "1", "]"}], "]"}], "\n", "          ", ",", " ", 
-          RowBox[{"FontSize", " ", "->", " ", "2"}], "\n", "          ", ",", 
-          " ", 
+          RowBox[{"FontSize", " ", "->", " ", 
+           RowBox[{"calcFontSize", "[", 
+            RowBox[{"StringCount", "[", 
+             RowBox[{"importedText", ",", " ", "\"\<\\n\>\""}], "]"}], 
+            "]"}]}], "\n", "          ", ",", " ", 
           RowBox[{"LineSpacing", " ", "->", " ", 
            RowBox[{"{", 
             RowBox[{"0.7", ",", " ", "0"}], "}"}]}], "\n", "          ", ",", 
@@ -168,7 +217,7 @@ Cell[BoxData[
         RowBox[{"{", "1", " "}]}]}]}]}], "*)"}], "\n", "\n", "    ", 
    RowBox[{
     RowBox[{
-     RowBox[{"constructCellContent", "[", 
+     RowBox[{"constructStatusCellContent", "[", 
       RowBox[{
       "file_", ",", " ", "fileLastUpdTime_", ",", " ", "importedCellsTag_"}], 
       "]"}], " ", ":=", "\n", "        ", 
@@ -275,7 +324,7 @@ Cell[BoxData[
              RowBox[{
              "this", " ", "checks", " ", "if", " ", "NB", " ", "was", " ", 
               "evaluated"}], " ", "*)"}], "\n", "                    ", 
-            RowBox[{"constructCellContent", "[", 
+            RowBox[{"constructStatusCellContent", "[", 
              RowBox[{
              "file", ",", " ", "fileLastUpdTime", ",", " ", 
               "importedCellsTag"}], "]"}], ",", "\n", "                    ", 
@@ -337,22 +386,24 @@ Cell[BoxData[
          "\n", "      ", ";", " ", 
         RowBox[{"deleteTaggedCells", "[", "importedCellsTag", "]"}]}]}], "\n",
        "    ", "]"}]}], ";"}], "\n", "\n", "    ", 
-   RowBox[{"(*", " ", "Launch", " ", "*)"}], "\n", "\n", "    ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Launch", ":"}], " ", "*)"}], "\n", "\n", "    ", 
    RowBox[{
     RowBox[{"wmvl`file", " ", "=", " ", 
      RowBox[{
       RowBox[{"NotebookDirectory", "[", "]"}], " ", "<>", " ", 
-      "\"\<_WMVimLink_tmp.txt\>\""}]}], ";"}], "\n", "    ", 
+      "\"\<_WMVimLink_tmp.txt\>\""}]}], ";"}], "\n", "\n", "    ", 
    RowBox[{
     RowBox[{"wmvl`tagForImportedCells", " ", "=", " ", "\"\<VimIO\>\""}], 
     ";"}], "\n", "\n", "    ", 
    RowBox[{"launchPlugin", "[", "\n", "        ", 
     RowBox[{"wmvl`file", "\n", "      ", ",", " ", 
      RowBox[{"FileDate", "[", "wmvl`file", "]"}], "\n", "      ", ",", " ", 
-     "wmvl`tagForImportedCells"}], "\n", "    ", "]"}]}]}]], "Input",
+     "wmvl`tagForImportedCells"}], "\n", "    ", "]"}], "\n"}]}]], "Input",
  CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
-  3.9365405737654896`*^9, 
-  3.936540573766463*^9}},ExpressionUUID->"86c1baa2-8472-4290-a5e8-\
+   3.9365405737654896`*^9, 3.936540573766463*^9}, {3.93696291397766*^9, 
+   3.93696291579381*^9}, 
+   3.936963469004306*^9},ExpressionUUID->"86c1baa2-8472-4290-a5e8-\
 2107e24f5a6c"]
 }, Closed]],
 
@@ -376,7 +427,7 @@ CellInsertionPointCell->Cell[
   CellFrameMargins -> 0, CellBaseline -> Center, CellFrameLabelMargins -> 0, 
   CellMargins -> 0, Editable -> False, Selectable -> False],
 NotebookEventActions->{},
-WindowSize->{928, 1021},
+WindowSize->{928, 991},
 WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 DockedCells->Cell[
   BoxData[
@@ -384,10 +435,10 @@ DockedCells->Cell[
     ToBoxes[
      If[Length[
         Names["wmvl`*"]] > 0, 
-      $CellContext`constructCellContent[
-      "E:\\00_Vault\\SynchW\\01 Projs Incubator\\02 \
-Engn\\WM_Study\\Goofing\\_WMVimLink_tmp.txt", 
-       DateObject[{2024, 9, 28, 22, 23, 38.}, "Instant", "Gregorian", 3.], 
+      $CellContext`constructStatusCellContent[
+      "E:\\00_Vault\\SynchW\\02 \
+CAD_Data_onW\\WM\\03_VimLink\\_WMVimLink_tmp.txt", 
+       DateObject[{2024, 10, 3, 19, 56, 12.}, "Instant", "Gregorian", 3.], 
        "VimIO"], 
       "WM-Vim-Link is inactive (Evaluate notebook to activate it)"], 
      StandardForm]]], "DockedCell", CellFrame -> {{0, 0}, {2, 0}}, 
@@ -804,9 +855,9 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 213, 4, 35, "Title",ExpressionUUID->"dda09e64-abbf-45e9-860a-1dc5cce37e3e"],
-Cell[796, 28, 14804, 327, 2456, "Input",ExpressionUUID->"86c1baa2-8472-4290-a5e8-2107e24f5a6c"]
+Cell[796, 28, 17217, 378, 2808, "Input",ExpressionUUID->"86c1baa2-8472-4290-a5e8-2107e24f5a6c"]
 }, Closed]],
-Cell[15615, 358, 202, 4, 35, "Title",ExpressionUUID->"497aab48-6def-4b6f-afa0-b5e1cce01379"]
+Cell[18028, 409, 202, 4, 35, "Title",ExpressionUUID->"497aab48-6def-4b6f-afa0-b5e1cce01379"]
 }
 ]
 *)

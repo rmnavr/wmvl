@@ -1,5 +1,5 @@
 
-(* Func Defs  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+(* Import funcs ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
 
     clearFileContent[file_] := Export[file, ""];
 
@@ -8,18 +8,32 @@
       ; NotebookDelete[SelectedNotebook[]] (* and delete them *)
     ];
 
-    importFileToNewCellAndExecute[file_, newCellTag_] := Module[{},
-        SelectionMove[InputNotebook[], After, Notebook] (* go to EOF *)
+    calcFontSize[nLines_] := Module[{nSmall, nBig, fontMin, fontMax, k, b},
+        nSmall  = 10
+      ; nBig    = 50
+      ; fontMin = 2
+      ; fontMax = 13
+      ; k = -(fontMax - fontMin)/(nBig - nSmall)
+      ; b = fontMax - k*nSmall
+      ; If[nLines < nSmall, Return @ fontMax, Null]
+      ; If[nLines > nBig  , Return @ fontMin, Null]
+      ; Return @ Round @ (k*nLines + b)
+    ];
+
+    importFileToNewCellAndExecute[file_, newCellTag_] := Module[
+        {importedText}
+      , SelectionMove[InputNotebook[], After, Notebook] (* go to EOF *)
       ; NotebookWrite[
             EvaluationNotebook[]
           , Cell[
-                Import[file, "text"] (*"nb" imports and launches, "string" makes extra «\n» symbols*)
+                importedText = Import[file, "text"]
+                (*why not "nb" — it imports and launches, why not "string" — it makes extra «\n» symbols*)
               , "Input"
               , CellTags -> newCellTag]
           , All (*select all what was written*)]
       ; SetOptions[
             SelectedCells[][[1]]
-          , FontSize -> 2
+          , FontSize -> calcFontSize[StringCount[importedText, "\n"]]
           , LineSpacing -> {0.7, 0}
           , Background -> LightBlue
           , CellFrameColor -> Blue
@@ -37,7 +51,7 @@
 (* ____________________________________________________________________________/ }}}1 *)
 (* Status Cell ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
 
-    constructCellContent[file_, fileLastUpdTime_, importedCellsTag_] :=
+    constructStatusCellContent[file_, fileLastUpdTime_, importedCellsTag_] :=
         DynamicModule[ {lastChangedTime = fileLastUpdTime, secondsPassed},
             Dynamic[
                 Refresh[
@@ -77,7 +91,7 @@
         Cell[
             BoxData[ToBoxes[Dynamic[
                 If[ Length[Names["wmvl`*"]] > 0, (* this checks if NB was evaluated *)
-                    constructCellContent[file, fileLastUpdTime, importedCellsTag],
+                    constructStatusCellContent[file, fileLastUpdTime, importedCellsTag],
                     "WM-Vim-Link is inactive (Evaluate notebook to activate it)"
                 ]
             ]]]
@@ -98,9 +112,10 @@
       ; deleteTaggedCells[importedCellsTag]
     ];
 
-    (* Launch *)
+    (* Launch: *)
 
     wmvl`file = NotebookDirectory[] <> "_WMVimLink_tmp.txt";
+
     wmvl`tagForImportedCells = "VimIO";
 
     launchPlugin[
@@ -108,3 +123,4 @@
       , FileDate[wmvl`file]
       , wmvl`tagForImportedCells
     ]
+
