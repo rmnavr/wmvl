@@ -1,50 +1,75 @@
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
+
+(* Info ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+(*
+		bad times:
+		- constructMostWsTypes[dFs, dDCs] // 1020 ms
+		- constructArrow[#, dynNodesWithCoords]& /@ dWs // 1750 ms
+		
+		speedup:
+		- wrap needed parts with Dynamics
+		- Point @, instead of Point /@
+		- no extra repeated Black/LightBlue
+
+		idea: staticGraphics, dynamicGraphics, Show
+
+*)
+(* ____________________________________________________________________________/ }}}1 *)
+
+	(* GENERAL: *)
+
+(* Imports (functions) ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+	(* <| "Out" -> {"CodeWM | CodeHY", "IO: reads files"} |> *)
+	importCodeFiles[fileNames : {_String ...}] :=
+		Import[#, "text"]& /@ fileNames //
+		StringRiffle[#, "\n\n\n"]& ;
+
+	(* <| "Out" -> {"", "IO: Immediately evaluates code from files"} |> *)
+	evaluateFiles[fileNames : {_String ...}] :=
+		Hold[Evaluate @ ToExpression[importCodeFiles @ fileNames]]
+
+	(* <| "Out" -> {"String", ""}, "Info" -> "Gets filename without dir" |> *)
+	extractFileName[fullName_String (* like: "C;\Dir1\Dir2\File.nbV" *)] := Module[
+		{}
+	  , StringCases[
+			fullName
+		  , RegularExpression["(\\w+)\\.\\w+$"] -> "$1"
+		][[1]]
+	]
+
+(* ____________________________________________________________________________/ }}}1 *)
+(* Run App (filenames) ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+	saveFileFullName = NotebookDirectory[] <> "_SpadocSave.txt" ;
+
+						 (* import? analize?*)
+	relevantFileNames =	{ { 0000 , True , "WM", "00_SpadocWM.nbV" }
+						, { True , True , "WM", "01_Dataclasses.nbV" }
+						, { True , True , "WM", "10_WMLexer.nbV" }
+						, { True , 0000 , "WM", "20_HyLexer.nbV" }
+						, { True , True , "WM", "30_PostLexerProcessor.nbV" }
+						, { True , 0000 , "WM", "31_GraphPlotter.nbV" }
+						, { True , True , "WM", "40_GUI_01.nbV" }
+						, { True , True , "WM", "40_GUI_02.nbV" }
+						, { True , True , "WM", "90_Utils.nbV" }
+						, { 0000 , 0000 , "WM", "Incubator_01.nbV" }
+						, { 0000 , 0000 , "WM", "Incubator_02.nbV" }
+						} ;
+
+	filesToImport = Cases[relevantFileNames, {True, _, _, fName_} :> (NotebookDirectory[] <> fName)] ;
+
+	lexerInputs =
+		Cases[
+			relevantFileNames
+		  , {_, True, lang_, fName_} :> {lang, extractFileName @ fName, Import[NotebookDirectory[] <> fName, "text"]}
+		] ;
+
+(* ____________________________________________________________________________/ }}}1 *)
+
+	(* Import WM Modeles: *)
+	evaluateFiles @ filesToImport ;
+
+	(* RUN: *)
+	{allNs, allWs} = toNodesAndWires @ executeLexerOnMany @ lexerInputs ;
+	launchInteractiveGUI[{allNs, allWs}, saveFileFullName] 
+

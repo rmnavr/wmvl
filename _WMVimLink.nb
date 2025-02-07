@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     41918,        856]
-NotebookOptionsPosition[     18234,        415]
-NotebookOutlinePosition[     41744,        854]
-CellTagsIndexPosition[     41701,        851]
+NotebookDataLength[     41996,        857]
+NotebookOptionsPosition[     18308,        416]
+NotebookOutlinePosition[     41822,        855]
+CellTagsIndexPosition[     41779,        852]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -160,7 +160,7 @@ Cell[BoxData[
             "]"}]}], "\n", "          ", ",", " ", 
           RowBox[{"LineSpacing", " ", "->", " ", 
            RowBox[{"{", 
-            RowBox[{"0.7", ",", " ", "0"}], "}"}]}], "\n", "          ", ",", 
+            RowBox[{"0.8", ",", " ", "0"}], "}"}]}], "\n", "          ", ",", 
           " ", 
           RowBox[{"Background", " ", "->", " ", "LightBlue"}], "\n", 
           "          ", ",", " ", 
@@ -402,9 +402,10 @@ Cell[BoxData[
      "wmvl`tagForImportedCells"}], "\n", "    ", "]"}], "\n"}]}]], "Input",
  CellChangeTimes->{{3.9359943985937123`*^9, 3.9359943996490297`*^9}, {
    3.9365405737654896`*^9, 3.936540573766463*^9}, {3.93696291397766*^9, 
-   3.93696291579381*^9}, 
-   3.936963469004306*^9},ExpressionUUID->"86c1baa2-8472-4290-a5e8-\
-2107e24f5a6c"]
+   3.93696291579381*^9}, 3.936963469004306*^9, {3.937141178529106*^9, 
+   3.9371411787568083`*^9}},
+ CellLabel->
+  "In[276]:=",ExpressionUUID->"86c1baa2-8472-4290-a5e8-2107e24f5a6c"]
 }, Closed]],
 
 Cell["IO Stream", "Title",
@@ -427,8 +428,8 @@ CellInsertionPointCell->Cell[
   CellFrameMargins -> 0, CellBaseline -> Center, CellFrameLabelMargins -> 0, 
   CellMargins -> 0, Editable -> False, Selectable -> False],
 NotebookEventActions->{},
-WindowSize->{928, 991},
-WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+WindowSize->{1920, 1007},
+WindowMargins->{{-8, Automatic}, {Automatic, 1072}},
 DockedCells->Cell[
   BoxData[
    DynamicBox[
@@ -438,13 +439,13 @@ DockedCells->Cell[
       $CellContext`constructStatusCellContent[
       "E:\\00_Vault\\SynchW\\02 \
 CAD_Data_onW\\WM\\03_VimLink\\_WMVimLink_tmp.txt", 
-       DateObject[{2024, 10, 3, 19, 56, 12.}, "Instant", "Gregorian", 3.], 
+       DateObject[{2025, 2, 7, 22, 48, 38.}, "Instant", "Gregorian", 3.], 
        "VimIO"], 
       "WM-Vim-Link is inactive (Evaluate notebook to activate it)"], 
      StandardForm]]], "DockedCell", CellFrame -> {{0, 0}, {2, 0}}, 
   CellFrameMargins -> {{8, 8}, {4, 4}}, CellFrameColor -> 
   RGBColor[0.33333333333333337`, 0.33333333333333337`, 0.33333333333333337`]],
-Magnification:>1.05 Inherited,
+Magnification:>1.4 Inherited,
 FrontEndVersion->"12.2 for Microsoft Windows (64-bit) (December 12, 2020)",
 StyleDefinitions->Notebook[{
    Cell[
@@ -854,10 +855,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 213, 4, 35, "Title",ExpressionUUID->"dda09e64-abbf-45e9-860a-1dc5cce37e3e"],
-Cell[796, 28, 17217, 378, 2808, "Input",ExpressionUUID->"86c1baa2-8472-4290-a5e8-2107e24f5a6c"]
+Cell[580, 22, 213, 4, 48, "Title",ExpressionUUID->"dda09e64-abbf-45e9-860a-1dc5cce37e3e"],
+Cell[796, 28, 17291, 379, 3572, "Input",ExpressionUUID->"86c1baa2-8472-4290-a5e8-2107e24f5a6c"]
 }, Closed]],
-Cell[18028, 409, 202, 4, 35, "Title",ExpressionUUID->"497aab48-6def-4b6f-afa0-b5e1cce01379"]
+Cell[18102, 410, 202, 4, 48, "Title",ExpressionUUID->"497aab48-6def-4b6f-afa0-b5e1cce01379"]
 }
 ]
 *)
