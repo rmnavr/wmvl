@@ -1,0 +1,15 @@
+
+    savedCoords = {{"calcFontSize", {1.472, 1.775}},
+        {"clearFileContent", {1.546, 0.325}},
+        {"constructDelAllCellsButton", {-1.99, -0.15}},
+        {"constructFEAbortButton", {-1.392, -0.15}},
+        {"constructPurgeButton", {-0.766, -0.155}},
+        {"constructReadNowButton", {0.33, 0.79}},
+        {"constructStatusCell", {0.42, -1.21}},
+        {"constructStatusCellContent", {0.49, -0.715}},
+        {"constructUpdDirButton", {-0.568, -0.75}},
+        {"deleteTaggedCells", {-0.284, 1.315}},
+        {"importFileToNewCellAndExecute", {0.916, 1.245}},
+        {"launchPlugin", {0.58, -1.84}},
+        {"readerModule", {0.37, 0.075}},
+        {"WMVLink_cur", {-0.966, 1.755}}} ;
