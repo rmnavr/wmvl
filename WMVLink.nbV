@@ -1,6 +1,7 @@
 
 	(* TODO:
 	   - instead of UpdDir button, pass fileName only, and construct fullPath everytime via NotebookDirection
+	   - TOOLTIP upd String?
 
 	   INFO:
 	   - for Initialization to work correctly, probably wait 2..3 sec before «Enable Dynamics»
@@ -8,8 +9,11 @@
 
 (* Import funcs ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
 
+	(* <| "Out" -> {"String", ""} |> *)
+	wmvl`generateFullFileName[fileName_String] := NotebookDirectory[] <> fileName ;
+
 	(* <| "Out" -> {"IO", "erases all data from file"} |> *)
-    wmvl`clearFileContent[fullFileName_String] := Export[fullFileName, ""];
+    wmvl`clearFileContent[fileName_String] := Export[wmvl`generateFullFileName[fileName], ""];
 
 	(* <| "Out" -> {"IO", "deleted cells from Notebook"} |> *)
     wmvl`deleteTaggedCells[] := Module[
@@ -33,13 +37,13 @@
     ];
 
 	(* <| "Out" -> {"IO", "read file content, put it into new cell, execute"} |> *)
-    wmvl`importFileToNewCellAndExecute[fullFileName_String] := Module[
+    wmvl`importFileToNewCellAndExecute[fileName_String] := Module[
         {importedText}
       , SelectionMove[InputNotebook[], After, Notebook] (* go to EOF *)
       ; NotebookWrite[
             EvaluationNotebook[]
           , Cell[
-                importedText = Import[fullFileName, "text"]
+                importedText = Import[wmvl`generateFullFileName[fileName], "text"]
                 (*why not "nb" — it imports and launches, why not "string" — it makes extra «\n» symbols*)
               , "Input"
               , CellTags -> wmvl`$Tag
@@ -69,10 +73,10 @@
 (* Status Cell ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
 
 	(* <| "Out" -> {"Cell", "docked"} |> *)
-    wmvl`constructStatusCell[fullFileName_String] :=
+    wmvl`constructStatusCell[fileName_String] :=
         Cell[
             BoxData[ToBoxes[
-				wmvl`constructStatusCellContent[fullFileName]
+				wmvl`constructStatusCellContent[fileName]
             ]]
           , "DockedCell"
           , CellFrame -> {{0, 0}, {2, 0}}
@@ -81,16 +85,17 @@
         ];
 
 	(* <| "Out" -> {"DynamicModule", ""} |> *)
-    wmvl`constructStatusCellContent[fullFileName_String] :=
+    wmvl`constructStatusCellContent[fileName_String] :=
         DynamicModule[
-			{}
+			{tooltip}
 		  , Row[{
 			    " "
-			  , Style["WM-Vim-Link", Bold] //
+			  , {Print @ 1, Style["WMVL v250303", Bold]} //
 				Framed[#, RoundingRadius -> 5, Background -> LightBlue, FrameMargins -> 2, ImageMargins -> 0]& //
-				Tooltip[#, Row[{"Exchange File: ", Style[fullFileName, Bold]}]]&
+				Tooltip[#, Row[{"Exchange File: ", Style[wmvl`generateFullFileName[fileName], Bold]}]]& //
+				Dynamic (* needed for tooltip regeneration when NotebookDir changes *)
 			  , " | "
-			  , wmvl`readerModule[fullFileName]
+			  , wmvl`readerModule[fileName]
 			  , " | "
 			  ,	wmvl`constructDelAllCellsButton[], " "
 			  , wmvl`constructPurgeButton[], " "
@@ -99,7 +104,7 @@
 			  , wmvl`constructUpdDirButton[]
 			}]
 		  , SaveDefinitions -> True
-		  , Initialization :> {wmvl`clearFileContent[fullFileName]}
+		  , Initialization :> {wmvl`clearFileContent[fileName]}
         ];
 
 (* ■ Buttons ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{2 *)
@@ -121,8 +126,8 @@
 
 	(* <| "Out" -> {"Button", ""} |> *)
 	wmvl`constructUpdDirButton[] := Button[
-		"Upd Self Dir"
-	  , wmvl`launchPlugin[NotebookDirectory[] <> "_WMVimLink_tmp.txt" ] 
+		"Relaunch WMVL"
+	  , wmvl`launchPlugin[wmvl`exchangeFile]
 	  , ImageMargins -> 0
 	] ;
 
@@ -130,19 +135,20 @@
 (* ■ Reader ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{2 *)
 
 	(* <| "Out" -> {"Button", ""} |> *)
-	wmvl`constructReadNowButton[fullFileName_String] :=
+	wmvl`constructReadNowButton[fileName_String] :=
 		Button[
 			"Read now"
 		   , ( wmvl`deleteTaggedCells[]
-			 ; wmvl`importFileToNewCellAndExecute[fullFileName]
+			 ; wmvl`importFileToNewCellAndExecute[fileName]
 			 )
 		   , ImageMargins -> 0, FrameMargins -> 0
 		]
 
 	(* <| "Out" -> {"Row", ""} |> *)
-    wmvl`readerModule[fullFileName_String] := DynamicModule[
-		{ dynLastChangedTime = FileDate[fullFileName]
+    wmvl`readerModule[fileName_String] := DynamicModule[
+		{ dynLastChangedTime = FileDate[wmvl`generateFullFileName[fileName]]
 		, dynActive = True
+		, tick = "/ "
 		}
 	  , Row[{
 			Checkbox[Dynamic[dynActive]], Toggler[Dynamic[dynActive], {True -> " AutoRead | ", False -> " AutoRead | "}]
@@ -150,27 +156,28 @@
 				If[ dynActive
 				  , Refresh[
 						(* file read actions (at every UpdateInterval): *)
-						If[ FileDate[fullFileName] > dynLastChangedTime
+						If[ FileDate[wmvl`generateFullFileName[fileName]] > dynLastChangedTime
 						  , { wmvl`deleteTaggedCells[]
-							, wmvl`importFileToNewCellAndExecute[fullFileName]
-							, dynLastChangedTime = FileDate[fullFileName]
+							, wmvl`importFileToNewCellAndExecute[fileName]
+							, dynLastChangedTime = FileDate[wmvl`generateFullFileName[fileName]]
 							}
 						  , Nothing
 						]   
 						(* visuals: *)
 					  ; Row[{   
 						  ,	"Last exchange file upd: "
-						  , DateString[FileDate[fullFileName]]
+						  , DateString[FileDate[wmvl`generateFullFileName[fileName]]]
 						  , " "
+						  , (If[tick == "/ ", tick = "\\ ", tick = "/ "]; tick)
 						}]
 					  , UpdateInterval -> 3
 					]
-				  , "---- -------- ---- ---: --- -- --- ---- --:--:--"
+				  , "---- -------- ---- ---: --- -- --- ---- --:--:-- - "
 				]
 			  , TrackedSymbols :> {dynActive}
 			]
 		  , " "
-		  , wmvl`constructReadNowButton[fullFileName]
+		  , wmvl`constructReadNowButton[fileName]
 		}] //
 		UnderBar
 	]
@@ -181,10 +188,10 @@
 (* Launch ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
 
 	(* <| "Out" -> {"IO", ""} |> *)
-    wmvl`launchPlugin[fullFileName_String (* echange file *)] := Module[
+    wmvl`launchPlugin[fileName_String (* echange file *)] := Module[
 		{dockedCell}
-	  , wmvl`clearFileContent[fullFileName]
-	  ; dockedCell = wmvl`constructStatusCell[fullFileName]
+	  , wmvl`clearFileContent[fileName]
+	  ; dockedCell = wmvl`constructStatusCell[fileName]
       ; SetOptions[
             InputNotebook[]
           , DockedCells -> dockedCell
@@ -192,7 +199,7 @@
     ];
 
 (* ____________________________________________________________________________/ }}}1 *)
-(* Leftovers ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+(* Leftovers ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{2 *)
 
 	wmvl`blinkerNOTUSEDCURRENTLY = 
 		DynamicModule[
@@ -219,6 +226,6 @@
 (* ____________________________________________________________________________/ }}}1 *)
 
 	wmvl`$Tag = "VimIO" ;
-    wmvl`exchangeFile = NotebookDirectory[] <> "_WMVimLink_tmp.txt" ;
+    wmvl`exchangeFile = "_WMVimLink_tmp.txt" ;
     wmvl`launchPlugin[wmvl`exchangeFile] ;
 
