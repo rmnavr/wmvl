@@ -12,13 +12,13 @@ WMVL consists of 2 parts:
 
 Overall it feels like REPL in Python and similar languages.
 
-# How it works
+# How to run it
 
-You place 2 files in some folder of your choice:
+Place 2 files in some folder of your choice:
 1. `_WMVimLink.nb` — WM Notebook (observer)
 2. `_WMVimLink_tmp.txt` — exchange file (well, `_WMVimLink.nb` will create it anyway if it is not found)
 
-Try launching `_WMVimLink.nb` (you might be asked to enable Dynamic content — please do it).
+Launch `_WMVimLink.nb` (you might be asked to enable Dynamic content — please do it).
 All functionality is baked into pinned cell (example below also shows imported cell with code `Print @ 3`):
 
 <p align="center">
@@ -28,9 +28,11 @@ All functionality is baked into pinned cell (example below also shows imported c
 Then write some WM code into `_WMVimLink_tmp.txt` and save it.
 
 You'll see that at next check cycle (occuring once every 3 seconds) `_WMVimLink.nb` will:
-1. Delete all previously imported cells — the ones that have bluish coloring and symbol «↑» on the left.
-   WMVL won't delete user-created cells (which is nice).
-2. Pull code from `_WMVimLink_tmp.txt`, place it in newly created import-cell, and run the code
+1. Delete all previously imported cells (including their outputs). Notice that WMVL won't delete user-created cells.
+   > Imported cells have have bluish coloring and symbol «↑» on the left.
+2. Pull code from `_WMVimLink_tmp.txt`, place it in newly created import-cell, and run the code.
+
+By the way, `_WMVimLink.nb` uses [wmcells](https://github.com/rmnavr/wmcells) stylesheet.
 
 # Vim plugin
 
