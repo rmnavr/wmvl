@@ -6,7 +6,8 @@ It provides fully established workflow for Vim, but also gives base for building
 WMVL consists of 2 parts:
 1. WM Notebook that observes changes in exchange plane-text file (this file is stored physically on disk).
    Notebook checks exchange file once every 3 seconds.
-   > If you are using another editor (not Vim), you'll just need to automate how you send code from your editor to this exchange file. That's it.
+   > If you are using another editor (not Vim), you'll just need to automate how you
+   > send code from your editor to this exchange file. That's it.
 2. Minimalistic Vim plugin that will write user-selected code to exchange file
 
 Overall it feels like REPL in Python and similar languages.
@@ -24,10 +25,12 @@ All functionality is baked into pinned cell:
 <img src="https://github.com/rmnavr/wmvl/blob/main/docs/nb_header.png?raw=true" alt="Notebook header" />
 </p>
 
-Then write some WM code into `_WMVimLink_tmp.txt` and save it. You'll see that at next check cycle (occuring once every 3 seconds)
-`_WMVimLink.nb` will pull code from `_WMVimLink_tmp.txt`, delete all previous cells and create new cell with code from exchange file.
+Then write some WM code into `_WMVimLink_tmp.txt` and save it (in the example image above — code was `Print @ 3`).
 
-Imported cells have bluish coloring and symbol «↑» on the left.
+You'll see that at next check cycle (occuring once every 3 seconds) `_WMVimLink.nb` will:
+1. Delete all previously imported cells — the ones that have bluish coloring and symbol «↑» on the left.
+   WMVL won't delete user-created cells (which is nice).
+2. Pull code from `_WMVimLink_tmp.txt`, place it in newly created import-cell, and run the code
 
 # Vim plugin
 
