@@ -19,13 +19,13 @@ You place 2 files in some folder of your choice:
 2. `_WMVimLink_tmp.txt` — exchange file (well, `_WMVimLink.nb` will create it anyway if it is not found)
 
 Try launching `_WMVimLink.nb` (you might be asked to enable Dynamic content — please do it).
-All functionality is baked into pinned cell:
+All functionality is baked into pinned cell (example below also shows imported cell with code `Print @ 3`):
 
 <p align="center">
 <img src="https://github.com/rmnavr/wmvl/blob/main/docs/nb_header.png?raw=true" alt="Notebook header" />
 </p>
 
-Then write some WM code into `_WMVimLink_tmp.txt` and save it (in the example image above — code was `Print @ 3`).
+Then write some WM code into `_WMVimLink_tmp.txt` and save it.
 
 You'll see that at next check cycle (occuring once every 3 seconds) `_WMVimLink.nb` will:
 1. Delete all previously imported cells — the ones that have bluish coloring and symbol «↑» on the left.
