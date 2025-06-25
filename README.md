@@ -21,7 +21,7 @@ Try launching `_WMVimLink.nb` (you might be asked to enable Dynamic content — 
 All functionality is baked into pinned cell:
 
 <p align="center">
-<img src="https://github.com/rmnavr/wmvl/blob/main/Docs/nb_header.png?raw=true" alt="Notebook header" />
+<img src="https://github.com/rmnavr/wmvl/blob/main/docs/nb_header.png?raw=true" alt="Notebook header" />
 </p>
 
 Then write some WM code into `_WMVimLink_tmp.txt` and save it. You'll see that at next check cycle (occuring once every 3 seconds)
