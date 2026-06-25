@@ -65,7 +65,48 @@ You need just 3 functions in Vim to automate writing code to exchange file:
 Add this code somewhere to your VimRC. Be sure to set correct directories for `_WMVimLink.nb` and `_WMVimLink_tmp.txt` files.
 Remap to other hotkeys if needed.
 ```vimscript
-to be done ...
+
+    nnoremap <F2> :call WM_write_to_exchange_txt_file()<CR>
+    nnoremap <F3> :call WM_open_NB_scratch_file()<CR>
+
+	" files used when calling «write to no-file scratchpad» 
+	let g:WM_Txt_Hard_Link = "C:\\wmvl\\_WMVimLink_tmp.txt"
+	let g:WM_NB_Hard_Link  = "C:\\wmvl\\_WMVimLink.nb"
+
+	" files used when trying to write to some file in dir of cur edited wm file
+	let g:WM_Expected_Local_NB_Name  = "_WMVimLinkLOCAL.nb"
+	let g:WM_Expected_Local_Txt_Name = "_WMVimLink_tmp.txt"
+
+	function! WM_write_to_exchange_txt_file()
+		let l:WM_Txt_Local_Link = expand('%:p:h') . "\\" . g:WM_Expected_Local_Txt_Name
+		"
+		if !empty(glob(l:WM_Txt_Local_Link))
+			"local file exists"
+			let l:file =  l:WM_Txt_Local_Link
+		else
+			let l:file = g:WM_Txt_Hard_Link
+		endif
+		"
+		execute "normal! :'<,'>w! " . l:file . "\<Enter>"
+	endfunction
+
+    function! WM_open_NB_scratch_file()
+		" 1) try local first
+		" 2) fallback do default in /wmvl
+		" 
+		let l:WM_NB_Local_Link = expand('%:p:h') . "\\" . g:WM_Expected_Local_NB_Name
+		"
+		if !empty(glob(l:WM_NB_Local_Link))
+			"local file exists"
+			echo 3
+			let l:file = shellescape(expand('%:p:h') . "\\" . g:WM_Expected_Local_NB_Name, 1)
+		else
+			let l:file = g:WM_NB_Hard_Link
+		endif
+		"
+		execute "normal! :!" . l:file ."\<Enter>"
+    endfunction
+
 ```
 
 # Writing plugins for other editors

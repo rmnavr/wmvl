@@ -1,0 +1,91 @@
+
+(* smth ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+	samplingFreq = 1024 ;	(* Hz *)
+	tStart = 0 ;			(* s *)
+	tEnd   = 1 ; 			(* s *)
+	nPts   = (tEnd - tStart) * samplingFreq // Round;
+
+	(* input/output signals: *)
+	f0 = 1 ; (* Hz *)
+	omega0 = 2 * Pi * f0 ; (* 1/s*)
+	ts = Table[i/samplingFreq, {i, 0, nPts - 1}] ; (* [s] of len nPts *)
+	xs = Sin[omega0*ts] + 0.0001*RandomReal[{-1, 1}, nPts];  (* [1] of len nPts*)
+	ys = 1.4*Sin[omega0*ts] + 0.0001*RandomReal[{-1, 1}, nPts]; 
+
+
+	(* ======================================================== *)
+
+	ListLinePlot[{Transpose @ {ts, xs}, Transpose @ {ts, ys}}, PlotLabel -> "Signals", PlotLegends -> {"Input", "Output"}]
+
+	(* Compute Fourier Transforms: *)
+	Xs = Fourier[xs, FourierParameters -> {1, 1}] ; (* [1 + 1i] of len nPts *)
+	Ys = Fourier[ys, FourierParameters -> {1, 1}] ; (* [1 + 1i] of len nPts *)
+	freqs = Table[i*samplingFreq/nPts, {i, 0, nPts - 1}] ; (* [Hz] of len nPts *)
+
+	ListLinePlot[Transpose @ {freqs, Xs}, PlotRange -> {{0, 5*f0}, Automatic}]
+
+	(* Compute Frequency Response H(f) *)
+	Hs = Ys/Xs ; (* [1 + 1i] of len nPts *)
+
+	(* Calculate Magnitude and Phase Responses *)
+	magnitudes = Abs[Hs] ;		(* [1] of len nPts*)
+	phases = Arg[Hs] / Degree ; (* [°] of len nPts*)
+
+	ListLinePlot[Transpose @ {freqs, magnitudes}, PlotRange -> {{0, 5*f0}, Automatic}]
+
+
+
+(* ____________________________________________________________________________/ }}}1 *)
+
+(* DFT (numbered example) ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+	calcDFT[xs_List] := Module[
+		{nPts}
+	  , nPts = Length @ xs 
+	  ; (Total @ Table[xs[[n + 1]]*Exp[-I*2*Pi*#1*n/nPts], {n, 0, nPts - 1}])& /@ Table[k, {k, 0, nPts -1}]
+	] ;
+	(* works the same as Fourier[xs_, FourierParameters -> {1, 1}] *)
+	
+	xxs = {1,1,1,0,0,0,0,0} ;
+	calcDFT[xxs] ;
+	ListPlot[Transpose[{Range[0,7], Abs @ calcDFT @ xxs}], Filling -> Axis]
+
+	InverseFourier[Fourier @ {1,1,1,0,0,0,0,0}]
+
+(* ____________________________________________________________________________/ }}}1 *)
+(* DFT (sum of sins) ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+	xs = Table[
+		(Sin[2*Pi*t] + 0.5 Sin[2*Pi*2*t] + 2*Sin[2*Pi*4*t])
+	  , {t, 0, 1 - 1/64, 1/64}
+	] ;
+
+	ListPlot[xs, Filling -> Axis]
+
+	Xs = Fourier[xs, FourierParameters -> {1, 1}] ;
+	ListPlot[Transpose[{Range[0, Length[Xs] - 1], Abs @ Xs}], Filling -> Axis, PlotRange -> All]
+
+(* ____________________________________________________________________________/ }}}1 *)
+(* Fourier Transform ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\ {{{1 *)
+
+	Plot[
+		Exp[-t^2]*(Sin[2*Pi*t] + 0.5 Cos[2*Pi*2*t])
+	  , {t, -3, 3}
+	  , PlotRange -> Full
+	]
+
+	FourierTransform[Exp[-t^2]*(Sin[2*Pi*t] + 0.5*Cos[2*Pi*2*t]), t, 2*Pi*f]
+
+	Plot[
+		Abs @ FourierTransform[
+			Exp[-t^2]*(Sin[2*Pi*t] + 0.5*Cos[2*Pi*2*t])
+		  , t
+		  , 2*Pi*f
+		] 
+	  , {f, -3, 3}
+	 ]
+
+(* ____________________________________________________________________________/ }}}1 *)
+
+
